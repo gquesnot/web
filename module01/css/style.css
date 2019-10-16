@@ -1,0 +1,50 @@
+
+.grey{
+	color: grey;
+}
+.txtcolor{
+	font-family: arial;
+}
+.txtcolor p:first-child{
+	color: red;
+}
+
+.txtcolor p:nth-child(2){
+	color: blue;
+}
+.txtcolor p:nth-child(3){
+	color: green;
+}
+
+
+.txtbackground{
+
+	font-family: monospace;
+}
+.txtbackground p:nth-child(1){
+	background-color: red;
+}
+.txtbackground p:nth-child(2){
+	background-color: blue;
+}
+.txtbackground p:nth-child(3){
+	background-color: green;
+}
+.wapic{
+	width: 50px;
+	height: 50px;
+
+}
+
+footer{
+	text-align:  center;
+
+}
+
+img{
+	max-width: 400px;
+	max-height: 200px;
+}
+.jspic{
+	margin-left: 30px;
+}

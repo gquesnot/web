@@ -1,0 +1,250 @@
+
+body{
+	margin:0 auto;
+	font-size: 1em;
+	font-family: 'Playfair Display', serif;
+	text-align: center;
+	 color: #4F6067;
+}
+
+header{
+	background-image: url("../img/fond.jpg");
+	color: white;
+	text-align: center;
+	background-position: 100%;
+	padding-bottom: 23%;
+
+}
+
+
+nav a, header p a, h1, th{
+	color: white;
+	text-decoration: none;
+	font-family: 'Kaushan Script', cursive;
+	font-weight: normal;
+
+}
+
+h1, h3{
+	font-size: 2em;
+	font-weight: normal;
+
+}
+
+h2{
+	font-size: 25px;
+	font-weight: normal;
+}
+h1{
+
+	margin: -360px 0 360px 0px;
+	text-shadow: 0 0 15px rgba(255,255,255,.5), 0 0 10px rgba(255,255,255,.5), 2px 2px 6px rgba(0,0,0,0.99);
+}
+nav a{
+	display: inline-block;
+	padding-bottom: 25px;
+	font-size: 1.5em;
+	margin: 1.75rem 2.5rem 0 2.5rem;
+}
+
+header p a{
+	display: block;
+	margin : 0;
+	padding: 0.75rem 0 0.75rem 0;
+	text-align: center;
+	font-size: 1.25em;
+	background: -moz-linear-gradient(top, rgba(194,132,217,0.25) 0%, rgba(214,150,222,0.22) 50%, rgba(224,180,231,0.19) 100%);
+	background: -webkit-linear-gradient(top, rgba(194,132,217,0.25) 0%,rgba(214,150,222,0.22) 50%,rgba(224,180,231,0.19) 100%);
+	background: linear-gradient(to bottom, rgba(194,132,217,0.25) 0%,rgba(214,150,222,0.22) 50%,rgba(224,180,231,0.19) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#40c284d9', endColorstr='#30e0b4e7',GradientType=0 );
+	
+}
+
+header p{
+	margin-top: 5px;
+}
+
+
+table{
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 1.5rem;
+
+}
+
+td,th{
+	border: 1px solid #D0D0D0;
+}
+
+th caption{
+	font-family: 'Kaushan Script', cursive;
+	font-weight: normal;
+}
+
+td:first-child{
+	text-align: left;
+}
+
+td{
+	padding: 1rem 1rem 1rem 1rem;
+}
+
+th{
+	text-align: left;
+	background-color: #C4A5DE;
+	padding: 1.5rem 1.5rem 1rem 1rem;
+	font-size: 1.6em;
+}
+
+caption{
+	margin: 1rem 0 2rem 0;
+	font-size: 2em;
+}
+
+tr:nth-child(odd) td{
+	background-color: #f2f2f2;
+} 
+
+fieldset{
+		border: solid 1px #D0D0D0;
+		margin: 2rem 0 2rem 0;
+		width: 89%;
+		margin : 0 auto;
+}
+
+
+legend{
+	font-size: 25px;
+	justify-content: center;
+
+}
+
+ul{
+	display: flex;
+	justify-content: center;
+}
+
+li{
+	list-style: none;
+	display : inline-block;
+	margin: 1rem 2rem 1rem 2rem;
+
+
+}
+
+input[type="text"]{
+	border-style: none none solid none;
+	border-color: #D0D0D0;
+}
+
+input[type="button"]{
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	margin: 1rem 0 1.5rem 0;
+	background-color: #8B5BC1;
+	color: white;
+	border-style: none;
+}
+
+select{
+	width: 1500px;
+
+}
+
+
+#date {
+	max-width: 90%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+
+
+
+#s1 article{
+	text-align: left;
+
+	margin: 4rem 2rem 2rem 2rem;
+	padding-bottom: 45px;
+}
+
+#s1 article:not(:last-child){
+	border-bottom: 1px solid black;
+
+}
+
+#s1 article:last-child{
+	margin-bottom: 0;
+}
+
+#s1 article:nth-of-type(even) img{
+	float: right;
+	margin-left: 1rem;
+
+}
+
+#s1 article:nth-of-type(odd) img{
+	float: left;
+	margin-right: 1rem;
+}
+
+#s1 h2{
+	text-align: center;
+}
+
+#s2 img{
+	width: 38%;
+}
+
+#s2{
+	display : flex;
+	justify-content: space-around;
+	padding-bottom: 2rem;
+	line-height: 2rem;
+}
+
+
+#s2 article{
+	width: 400px;
+}
+
+
+#s2 , #licence{
+	color: white;
+	background: rgb(146,112,218);
+	background: -moz-linear-gradient(45deg,  rgba(146,112,218,1) 0%, rgba(222,204,246,1) 100%);
+	background: -webkit-linear-gradient(45deg,  rgba(146,112,218,1) 0%,rgba(222,204,246,1) 100%);
+	background: linear-gradient(45deg,  rgba(146,112,218,1) 0%,rgba(222,204,246,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9270da', endColorstr='#deccf6',GradientType=1 );
+
+}
+
+iframe{
+	width: 100%;
+}
+
+#licence {
+	color: white;
+
+    display: block;
+    text-align: center;
+    padding: 10px;
+
+}
+
+#licence a{
+	color:white;
+}
+
+#licence img {
+    width: 50px;
+}
+
+
+.clearfix{clear: both;}
+
+
+.fas, .far{
+	display: block;
+	color : white;
+}
+
