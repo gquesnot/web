@@ -69,7 +69,7 @@ function sudoku()
 	//show_sudoku(tab2);
 	//if (is_valid(tab2))
 	//{	
-		resolve(tab2, index);
+		//resolve(tab2, index);
 		//resolve_reverse(tab3, 80);
 		//showInTab(tab2);
 	//	console.log(tab3);

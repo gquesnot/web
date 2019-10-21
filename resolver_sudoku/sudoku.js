@@ -67,6 +67,7 @@ function sudoku()
 	var index = 0;
 	var tab2 = parseTab();
 
+	console.log(tab2);
 	resolve(tab2, index);
 	showInTab(tab2);
 	console.log(tab2);
@@ -142,6 +143,7 @@ function resolve(tab, var1)
 		return (true);
 	while (i <= 9)
 	{
+		show_sudoku(tab);
 		if (is_safe(i, Math.floor(index/9), index%9, tab))
 		{
 			tab[Math.floor(index/9)][index%9]=i;
