@@ -65,12 +65,12 @@ function showInTab(tab)
 function sudoku()
 {
 	var index = 0;
-	var tab2 = parseTab();
+	//var tab2 = parseTab();
 
-	console.log(tab2);
-	resolve(tab2, index);
-	showInTab(tab2);
-	console.log(tab2);
+	//console.log(tab2);
+	resolve(tab, index);
+	showInTab(tab);
+	console.log(tab);
 
 }
 
