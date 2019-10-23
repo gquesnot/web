@@ -30,8 +30,6 @@ function parseTab()
 		j = 0;	
 		i++;
 	}
-	console.log(n);
-	console.log(tab);
 	return (tab);
 }
 
@@ -65,12 +63,12 @@ function showInTab(tab)
 function sudoku()
 {
 	var index = 0;
-	//var tab2 = parseTab();
+	var tab2 = parseTab();
 
-	//console.log(tab2);
-	resolve(tab, index);
-	showInTab(tab);
-	console.log(tab);
+	console.log(tab2);
+
+	resolve(tab2, index);
+	showInTab(tab2);
 
 }
 
@@ -81,10 +79,10 @@ function show_sudoku(tab)
 var i = 0;
 var j= 0;
 document.write("<br/><br/>")
-while (j < tab.length)
+while (j < 9)
 {
 	i = 0;
-	while (i < tab[j].length)
+	while (i < 9)
 	{
 		document.write(tab[j][i]+" ");
 		i++;
@@ -99,14 +97,14 @@ function is_safe(number, y, x, tab)
 	var i = 0;
 	while (i < 9)
 	{
-		if (tab[y][i] == number && i != x)
+		if (tab[y][i] == number)
 			return (false);
 		i++;
 	}
 	i = 0;
 	while (i <  9)
 	{
-		if (tab[i][x] == number && y != i)
+		if (tab[i][x] == number)
 			return (false);
 		i++;
 	}
@@ -133,19 +131,18 @@ function find_next(y, x, tab)
 }
 
 
-function resolve(tab, var1)
+function resolve(tab, index)
 {
 	var i = 1;
-	var index = var1;
 
 	index = find_next(Math.floor(index/9), index%9, tab) ;
 	if (index >= 81)
 		return (true);
 	while (i <= 9)
 	{
-		show_sudoku(tab);
 		if (is_safe(i, Math.floor(index/9), index%9, tab))
-		{
+		{  
+			show_sudoku(tab);
 			tab[Math.floor(index/9)][index%9]=i;
 			if (resolve(tab, index + 1))
 				return  (true);

@@ -64,20 +64,27 @@ function sudoku()
 {
 	var index = 0;
 	var tab2 = parseTab();
-	var tab3 = tab2;
+	var coor={
+		'x':0,
+		'y':0,
+	};
+
+
+	//var tab3 = tab2;
 	console.log(tab2);
 	//show_sudoku(tab2);
 	//if (is_valid(tab2))
 	//{	
 		resolve(tab2, index);
 		//resolve_reverse(tab3, 80);
-		//showInTab(tab2);
-	//	console.log(tab3);
+		showInTab(tab2);
+		console.log('-------------')
+		console.log(tab2);
 		//if (!sudoku_diff(tab2, tab3))
 		//	alert("sudoku non valide: plusieur solutoion");
-		if(!is_valid(tab2))
-			alert("erreur resultat non valide");
-		console.log(tab2);
+	//	if(!is_valid(tab2))
+	//		alert("erreur resultat non valide");
+	//	console.log(tab2);
 	//}
 	//else
 		//alert("Sudoku invalid");
@@ -103,43 +110,102 @@ while (j < tab.length)
 }
 }
 
+
+function check_square(number, y, x, tab)
+{
+	var i = 0;
+	var j = 0;
+	while (j <  3)
+	{
+		while (i < 3)
+		{
+			if(tab[y+j][x+i]== number)
+				return (false);
+			i++;
+		}
+		i = 0;
+		j++;
+
+	}
+	return(true);
+}
+
+
+function get_coor(index)
+{
+	var coor={
+		'x':0,
+		'y':0,
+	};
+
+	coor.y= Math.floor(index/9);
+	coor.x= index%9;
+
+	return(coor);
+}
+
+
+function get_index(coor)
+{
+	return(coor.y*9+coor.x);
+
+}
+
 function is_safe(number, y, x, tab)
 {
 	var i = 0;
+
+
 	while (i < 9)
 	{
-		if (tab[y][i] == number && i != x)
+		if (tab[y][i] == number)
 			return (false);
 		i++;
 	}
 	i = 0;
 	while (i <  9)
 	{
-		if (tab[i][x] == number && y != i)
+		if (tab[i][x] == number)
 			return (false);
 		i++;
 	}
+	if (!check_square(number, y - y%3, x - x%3, tab))
+		return (false);
 	return(true);
 }
 
-function find_next(y, x, tab)
+function find_next(tab)
 {
 	var i = 0;
 	var j = 0;
+	var coor={
+		'x':0,
+		'y':0,
+	};
+
 
 	while (j <  9)
 	{
 		while (i < 9)
 		{
 			if (tab[j][i] == '.')
-				return ((j*9)+i);
+			{
+				coor.y = j;
+				coor.x= i;
+				return (coor);
+			}
 			i++;
 		}
 		i = 0;
 		j++;
 	}
-	return ((j*9)+i +1);
+	coor.y = j;
+	coor.x= i;
+	return (coor);
 }
+
+
+
 
 
 function find_prev(y, x, tab)
@@ -164,27 +230,25 @@ function find_prev(y, x, tab)
 
 
 
-function resolve(tab, var1)
+function resolve(tab, index)
 {
 	var i = 1;
-	var index = var1;
 
-	index = find_next(Math.floor(index/9), index%9, tab) ;
+	
+	if (index <= 80 && tab[Math.floor(index/9)][index%9] != '.')
+		if (resolve(tab, index+1))
+			return (true);
 	if (index >= 81)
 		return (true);
 	while (i <= 9)
 	{
-		//show_sudoku(tab);
-		console.log(tab);
-		console.log(index);
 		if (is_safe(i, Math.floor(index/9), index%9, tab))
-		{
+		{	
+			
 			tab[Math.floor(index/9)][index%9]=i;
-			if (resolve(tab, index + 1))
+			if (resolve(tab, index+1))
 				return  (true);
 		}
-
-
 		i++;
 	}
 	tab[Math.floor(index/9)][index%9] = '.';
@@ -197,7 +261,7 @@ function resolve_reverse(tab, var1)
 	var i = 9;
 	var index = var1;
 
-	index = find_prev(Math.floor(index/9), index%9, tab) ;
+	if (index = find_prev(Math.floor(index/9), index%9, tab) ;
 	if (index == 0)
 		return (true);
 	while (i >= 0)
