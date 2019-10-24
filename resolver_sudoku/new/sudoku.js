@@ -75,7 +75,7 @@ function sudoku()
 	//show_sudoku(tab2);
 	//if (is_valid(tab2))
 	//{	
-		resolve(tab2, index);
+		resolve(tab2, find_next(tab2));
 		//resolve_reverse(tab3, 80);
 		showInTab(tab2);
 		console.log('-------------')
@@ -190,18 +190,16 @@ function find_next(tab)
 		{
 			if (tab[j][i] == '.')
 			{
-				coor.y = j;
-				coor.x= i;
-				return (coor);
+			
+				return (j*9+i);
 			}
 			i++;
 		}
 		i = 0;
 		j++;
 	}
-	coor.y = j;
-	coor.x= i;
-	return (coor);
+
+	return (j*9+i);
 }
 
 
@@ -234,25 +232,29 @@ function resolve(tab, index)
 {
 	var i = 1;
 
-	
-	if (index <= 80 && tab[Math.floor(index/9)][index%9] != '.')
-		if (resolve(tab, index+1))
-			return (true);
-	if (index >= 81)
-		return (true);
+	console.log(index);
+	// if (index <= 80 && tab[Math.floor(index/9)][index%9] != '.')
+	// 	{if (resolve(tab, index+1))
+	// 		return (true);
+	// 	}
+	// else
+	// 	return(false)
+	if (is_valid(tab))
+		return(true);
 	while (i <= 9)
 	{
 		if (is_safe(i, Math.floor(index/9), index%9, tab))
 		{	
 			
 			tab[Math.floor(index/9)][index%9]=i;
-			if (resolve(tab, index+1))
+			if (resolve(tab, find_next(tab)))
 				return  (true);
 		}
 		i++;
 	}
 	tab[Math.floor(index/9)][index%9] = '.';
 	return (false);
+
 }
 
 
@@ -261,7 +263,7 @@ function resolve_reverse(tab, var1)
 	var i = 9;
 	var index = var1;
 
-	if (index = find_prev(Math.floor(index/9), index%9, tab) ;
+	if (index = find_prev(Math.floor(index/9), index%9, tab));
 	if (index == 0)
 		return (true);
 	while (i >= 0)
