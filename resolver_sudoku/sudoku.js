@@ -76,20 +76,18 @@ function clean_sudoku()
 
 function sudoku()
 {
-	var index = 0;
-	let tab2 = parseTab();
-	var coor={
-		'x':0,
-		'y':0,
-	};
+	
+	var tab2 = parseTab();
+	
 
-
-	var tab3 = tab2;
 	
 	if (is_valid(tab2))
 	{	
-		resolve(tab2, index);
+		var tab3 = tab2;
+		resolve(tab2, 0);
 		resolve_reverse(tab3, 80);
+		console.log(tab2);
+		console.log(tab3);
 		if (!sudoku_diff(tab2, tab3))
 			alert("sudoku non valide: plusieur solution");
 		if(!is_valid(tab2))
