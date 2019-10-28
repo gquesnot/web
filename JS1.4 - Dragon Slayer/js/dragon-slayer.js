@@ -65,25 +65,25 @@ function chose_difficulty() {
 function attackByDragon(degat) {
 
     if (difficulty == "facile")
-        return (Math.floor(degat * (1 - (lancerDes(2, 6) / 100))));
+        return (degat * (1 - (lancerDes(2, 6) / 100)));
     else if (difficulty == "difficile")
-        return (Math.floor(degat * (1 + (lancerDes(1, 6) / 100))));
+        return (degat * (1 + (lancerDes(1, 6) / 100)));
     else
         return (degat);
 }
 
 function classDamageModifier(degat) {
     if (perso1.nom == "voleur")
-        return (Math.floor(degat * (1 + (lancerDes(1, 6) / 100))));
+        return (degat * (1 + (lancerDes(1, 6) / 100)));
     else if (perso1.nom == "mage")
-        return (Math.floor(degat * (1 + (lancerDes(1, 10) / 100))));
+        return (degat * (1 + (lancerDes(1, 10) / 100)));
     else
-        return (degat);
+        return (Math.floor(degat));
 }
 
 function classKnight(degat) {
     if (perso1.nom == "knight")
-        return (Math.floor(degat * (1 - (lancerDes(1, 10) / 100))));
+        return (degat * (1 - (lancerDes(1, 10) / 100)));
     else
         return (degat);
 
@@ -94,16 +94,16 @@ function classKnight(degat) {
 function attackByHero(degat) {
 
     if (difficulty == "facile")
-        return (Math.floor(degat * (1 + (lancerDes(2, 6) / 100))));
+        return (degat * (1 + (lancerDes(2, 6) / 100)));
     else if (difficulty == "difficile")
-        return (Math.floor(degat * (1 - (lancerDes(1, 6) / 100))));
+        return (degat * (1 - (lancerDes(1, 6) / 100)));
     else
         return (degat);
 }
 
 function round(i) {
-    var degatDragon = classKnight(attackByDragon(lancerDes(10, 6)));
-    var degatHero = classDamageModifier(attackByHero(lancerDes(10, 6)));
+    var degatDragon = Math.floor(classKnight(attackByDragon(lancerDes(10, 6))));
+    var degatHero = Math.floor(classDamageModifier(attackByHero(lancerDes(10, 6))));
 
     if (degatDragon > degatHero) {
         perso1.hp -= degatDragon;
@@ -125,6 +125,27 @@ function round(i) {
 
 }
 
+function round_2(i){
+    var degatDragon = Math.floor(classKnight(attackByDragon(lancerDes(10, 6))));
+    var degatHero = Math.floor(classDamageModifier(attackByHero(lancerDes(10, 6))));
+       degatDragon> degatHero ? perso1.hp -= degatDragon : perso2.hp -= degatHero;
+    if (perso1.hp < 0)
+        perso1.hp = 0;
+    if (perso2.hp < 0)
+        perso2.hp = 0;
+
+    document.write("<li class=\"round-log ");
+    document.write(degatDragon>degatHero? "dragon" : "player" + "-attacks\"><h2 class=\"subtitle\">Tour n°" + i + "</h2>");
+    document.write("<img src=\"images/" + (degatDragon>degatHero ? perso2.nom : perso1.nom) + "-winner.png\" alt=\"" + (degatDragon>degatHero ? perso2.nom : perso1.nom) + "\">");
+    document.write("<p>"+(degatDragon>degatHero ? ("Le dragon prend l'initiative, vous attaque et vous inflige " + degatDragon) : ("Vous êtes le plus rapide, vous attaquez le dragon et lui infligez " + degatHero)) + " points de dommage !</p>");
+    document.write("</li>")
+
+}
+
+
+
+
+
 
 function game_state() {
     if (perso1.base_hp / 3 >= perso1.hp)
@@ -144,9 +165,17 @@ function game_state() {
 
 
     if (perso2.base_hp / 3 >= perso2.hp)
-        document.write("<figure><img src=\"images/dragon-wounded.png\" alt=\"Dragon\"><figcaption>" + perso2.hp + " PV</figcaption></figure></li>");
+        document.write("<figure><img src=\"images/dragon-wounded.png\" alt=\"Dragon\">");
     else
-        document.write("<figure><img src=\"images/dragon.png\" alt=\"Dragon\"><figcaption>" + perso2.hp + " PV</figcaption></figure></li>");
+        document.write("<figure><img src=\"images/dragon.png\" alt=\"Dragon\">");
+
+    if(perso2.base_hp*0.75<= perso2.hp)
+      document.write("<img class=\"pv\" src=\"images/100dragon.png\"/><figcaption>" + perso2.hp + " PV</figcaption></figure></li>");
+    else if(perso2.base_hp*0.50<= perso2.hp)
+        document.write("<img class=\"pv\" src=\"images/75dragon.png\"/><figcaption>" + perso2.hp + " PV</figcaption></figure></li>");
+    else
+        document.write("<img class=\"pv\" src=\"images/25dragon.png\"/><figcaption>" + perso2.hp + " PV</figcaption></figure></li>");
+
 }
 
 
@@ -168,7 +197,7 @@ difficulty = chose_difficulty();
 document.write("<ul><li class=\"title\">Que le combat commence !!</li>");
 while (perso1.hp != 0 && perso2.hp != 0) {
     game_state();
-    round(i);
+    round_2(i);
     i++;
 }
 game_end();
