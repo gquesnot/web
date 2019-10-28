@@ -30,9 +30,7 @@
 
 html{font-size:62.5%;}
 body{font-size: 1.6rem;
-	max-width: 1500px;
 	font-family: 'BodegaSans';
-	max-width: 1500px;
 	width: 95%;
 	background: repeat url("../img/bg_body.svg") #444444 center;
 	margin : 1.5rem auto;
@@ -132,6 +130,7 @@ width: 90%;
 footer p{
 	margin: 3rem 0;
 	color: #D0D0D0;
+	line-height: 2;
 }
 
 footer a{
@@ -325,7 +324,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		width: 20%;
 		padding: 0;
 	}
-	}
+	
 	footer li:last-child{
 	width: 20%;
 }
@@ -338,3 +337,141 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 }
 
+
+
+
+@media screen and (min-width: 1024px)
+{
+
+	body{
+		width: auto;
+	}
+
+	main{
+		max-width: 1500px;
+		margin: 0 auto;
+	}
+
+	header{
+		padding: 0;
+		margin: 0;
+	}
+
+	header img{
+		margin-left: 20rem;
+	}
+
+	header ul{
+		padding-right: 10rem;
+		width: auto;
+	}
+
+	.flexslider{
+		margin : 0 auto;
+	}
+
+	
+	section h2{
+		width: 100%;
+	}
+
+	section img{
+		width: 250px;
+	}
+
+	section {
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		margin : 0 auto;
+	}
+
+	section article{
+		margin: 3rem;
+
+	}
+
+
+	section article:first-of-type{
+		margin-left: 0;
+	}
+
+	section article:last-child{
+		margin-right: 0;
+	}
+
+
+	section article{
+		flex: 1;
+	}
+	
+	.info{
+		width: 100%;
+		margin-bottom: 17.5rem;
+	}
+	.info ul{
+		display: flex;
+	}
+	.info > ul > li{
+		flex: 1;
+	}
+
+	.info > ul >li >ul >li{
+		padding: 2rem;
+	}
+
+	.info > ul >li >ul li:first-child{
+		width: 100%;
+		flex: auto;
+		padding: 0;
+	}
+	.info ul > li >ul{
+		flex-wrap: wrap;
+		justify-content: flex-start;
+	}
+
+	.info h4{
+
+		margin : 0 0 5rem 0;
+		width: 100%;
+
+	}
+
+
+	.info video{
+		width: 100%;
+	}
+	#licence, footer{
+		width: 100%;
+		margin : 0;
+		padding : 0;
+	}
+
+
+	footer{
+		padding-top: 10rem;
+		padding-bottom: 7.5rem;
+	}
+	footer ul{
+		justify-content: center;
+	}
+
+	footer li:last-child{
+		width: auto;
+	}
+	footer ul li{
+		width: auto;
+		padding: 3rem;
+	}
+
+	html{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		margin : 0;
+		padding: 0;
+	}
+
+
+}
