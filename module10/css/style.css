@@ -1,0 +1,118 @@
+*{box-sizing: border-box;}
+
+html{font-size: 62.5%;}
+body{
+	background: url("../img/fond.png");
+	font-size: 1.8rem;
+	font-family: 'Bree Serif', serif;
+	max-width: 1100px;
+	width: 95%;
+	margin : 0 auto;
+}
+
+
+
+#top{
+	width: 100%;
+}
+
+h1{
+	font-size: 3rem;
+	line-height: 6rem;
+	color: white;
+	font-weight: normal;
+}
+
+a{
+	text-decoration: none;
+	color: #808080;
+	font-family: 'Bree Serif', serif;
+}
+
+ul{
+	list-style: none;
+	padding :0;
+}
+
+h1:before, h1:after, h2:before, h2:after{
+	content:"-";
+}
+
+
+h2{
+	color: #F1305F;
+	font-weight: normal;
+	font-size: 2.8rem;
+	text-align: center;
+	border-bottom: 1px solid #d9d9d9;
+	margin: 1rem 2rem;
+	padding-bottom: 2.5rem;
+}
+
+
+input{
+	font-size:1.6rem;
+}
+
+header img{
+	width: 40px;
+	display: block;
+	margin : 0 auto;
+	padding: 5rem 0 1rem 0;
+}
+
+header>nav>a{
+	font-size: 3rem;
+	font-weight: 500;
+}
+
+
+header ul li a{
+	font-size: 1.5rem;
+}
+
+nav ul{
+	display : flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+nav{
+	text-align: center;
+}
+
+nav .fas{
+	display : block;
+	padding: 1.65rem;
+	font-size: 1.6rem
+}
+
+section{
+	text-align: center;
+}
+
+
+#top{
+	background: url("../img/bg_header.png") left;
+	text-align: center;
+	padding: 13rem 12px;
+	margin-bottom: 15rem;
+}
+
+#top p{
+	color: white;
+	line-height: 2.8rem;
+	font-size: 1.4rem;
+	margin-bottom: 6rem;
+}
+
+#top a{
+
+	padding: 1rem 2rem;
+	background-color: #F1305F;
+	color: white;
+	font-size: 1.4rem;
+	font-weight: bold;
+	border-radius: 5px 5px 5px 5px;
+}
+
