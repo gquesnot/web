@@ -211,3 +211,12 @@ section ul li figure .pv{
     from { transform: translateX(0px); }
     to { transform: translateX(600%); }
 }
+
+.canvas{
+    align-self: flex-end;
+    margin-bottom: -11px;
+}
+figure img{
+    background: white;
+    border: 1px solid black;
+}

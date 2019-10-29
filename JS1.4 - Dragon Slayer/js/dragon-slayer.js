@@ -27,6 +27,26 @@ var perso2 = {
 /*************************************************************************************************/
 
 
+function healthBar(perso){
+    var img = new Image();
+    img.src= "./images/100player.png";
+    var height = (perso.hp/perso.base_hp)*157.84;
+    height = height+"px";
+    img.style.height = height;
+    img.style.width = "20px";
+   var elem= document.getElementsByClassName("canvas");
+   console.log(elem);
+   console.log(elem[0]);
+   if (perso.nom == "dragon")
+   {
+    img.src="./images/100dragon.png";
+    elem[(i-1)*2+ 1].appendChild(img);
+   }
+   else
+       elem[(i-1)*2].appendChild(img);
+}
+
+
 function choseClasse() {
     var tmp = window.prompt("choisir un classe entre chevalier - voleur - mage");
     while (tmp != "chevalier" && tmp != "mage" && tmp != "voleur") {
@@ -152,12 +172,7 @@ function game_state() {
         document.write("<li class=\"game-state\"><figure><img src=\"images/" + perso1.nom + "-wounded.png\" alt=\"" + perso1.nom + "\">")
     else
         document.write("<li class=\"game-state\"><figure><img src=\"images/" + perso1.nom + ".png\" alt=\"" + perso1.nom + "\">");
-    if (perso1.base_hp*0.75<= perso1.hp)
-    	document.write("<img class=\"pv\" src=\"images/100player.png\"/><figcaption>" + perso1.hp + " PV</figcaption></figure>");
-    else if(perso1.base_hp*0.50<= perso1.hp)
-    	document.write("<img class=\"pv\" src=\"images/75player.png\"/><figcaption>" + perso1.hp + " PV</figcaption></figure>");
-    else 
-    	document.write("<img class=\"pv\" src=\"images/25player.png\"/><figcaption>" + perso1.hp + " PV</figcaption></figure>");
+    document.write("<div class=\"canvas\"></div><figcaption>" + perso1.hp + " PV</figcaption></figure>");
     
 
 
@@ -168,14 +183,10 @@ function game_state() {
         document.write("<figure><img src=\"images/dragon-wounded.png\" alt=\"Dragon\">");
     else
         document.write("<figure><img src=\"images/dragon.png\" alt=\"Dragon\">");
+    document.write("<div class=\"canvas\"></div>"+ "<figcaption>" + perso2.hp + " PV</figcaption></figure></li>");
 
-    if(perso2.base_hp*0.75<= perso2.hp)
-      document.write("<img class=\"pv\" src=\"images/100dragon.png\"/><figcaption>" + perso2.hp + " PV</figcaption></figure></li>");
-    else if(perso2.base_hp*0.50<= perso2.hp)
-        document.write("<img class=\"pv\" src=\"images/75dragon.png\"/><figcaption>" + perso2.hp + " PV</figcaption></figure></li>");
-    else
-        document.write("<img class=\"pv\" src=\"images/25dragon.png\"/><figcaption>" + perso2.hp + " PV</figcaption></figure></li>");
-
+    healthBar(perso2);
+    healthBar(perso1);
 }
 
 
