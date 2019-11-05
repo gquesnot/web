@@ -18,6 +18,8 @@ var perso2 = {
     base_hp: 0,
 };
 
+const imgSize=198.03;
+
 
 
 
@@ -30,13 +32,11 @@ var perso2 = {
 function healthBar(perso){
     var img = new Image();
     img.src= "./images/100player.png";
-    var height = (perso.hp/perso.base_hp)*157.84;
+    var height = (perso.hp/perso.base_hp)*imgSize;
     height = height+"px";
     img.style.height = height;
     img.style.width = "20px";
    var elem= document.getElementsByClassName("canvas");
-   console.log(elem);
-   console.log(elem[0]);
    if (perso.nom == "dragon")
    {
     img.src="./images/100dragon.png";
@@ -121,11 +121,24 @@ function attackByHero(degat) {
         return (degat);
 }
 
-function round(i) {
-    var degatDragon = Math.floor(classKnight(attackByDragon(lancerDes(10, 6))));
-    var degatHero = Math.floor(classDamageModifier(attackByHero(lancerDes(10, 6))));
+function degat()
+{   
+    var degatD = lancerDes(10, 6);
+    var degatP = lancerDes(10, 6);
+    while (degatP == degatD)
+    {
+        degatD = lancerDes(10, 6);
+        degatP = lancerDes(10, 6);
+    }
+    return(degatD > degatP ? "dragon" : "player");
+}
 
-    if (degatDragon > degatHero) {
+
+function round(i) {
+    var init = degat();
+
+    if (init == "dragon") {
+        var degatDragon = Math.floor(classKnight(attackByDragon(lancerDes(3, 6))));
         perso1.hp -= degatDragon;
         if (perso1.hp < 0)
             perso1.hp = 0;
@@ -133,6 +146,7 @@ function round(i) {
         document.write("<img src=\"images/" + perso2.nom + "-winner.png\" alt=\"" + perso2.nom + "\">");
         document.write("<p>Le dragon prend l'initiative, vous attaque et vous inflige " + degatDragon + " points de dommage !</p>")
     } else {
+        var degatHero = Math.floor(classDamageModifier(attackByHero(lancerDes(3, 6))));
         perso2.hp -= degatHero;
         if (perso2.hp < 0)
             perso2.hp = 0;
@@ -146,18 +160,20 @@ function round(i) {
 }
 
 function round_2(i){
+    var initP= lancerDes(10,6);
+    var initD= lancerDes(10,6);
     var degatDragon = Math.floor(classKnight(attackByDragon(lancerDes(10, 6))));
     var degatHero = Math.floor(classDamageModifier(attackByHero(lancerDes(10, 6))));
-       degatDragon> degatHero ? perso1.hp -= degatDragon : perso2.hp -= degatHero;
+       initD> initP ? perso1.hp -= degatDragon : perso2.hp -= degatHero;
     if (perso1.hp < 0)
         perso1.hp = 0;
     if (perso2.hp < 0)
         perso2.hp = 0;
 
     document.write("<li class=\"round-log ");
-    document.write(degatDragon>degatHero? "dragon" : "player" + "-attacks\"><h2 class=\"subtitle\">Tour n°" + i + "</h2>");
-    document.write("<img src=\"images/" + (degatDragon>degatHero ? perso2.nom : perso1.nom) + "-winner.png\" alt=\"" + (degatDragon>degatHero ? perso2.nom : perso1.nom) + "\">");
-    document.write("<p>"+(degatDragon>degatHero ? ("Le dragon prend l'initiative, vous attaque et vous inflige " + degatDragon) : ("Vous êtes le plus rapide, vous attaquez le dragon et lui infligez " + degatHero)) + " points de dommage !</p>");
+    document.write(initD>initP? "dragon" : "player" + "-attacks\"><h2 class=\"subtitle\">Tour n°" + i + "</h2>");
+    document.write("<img src=\"images/" + (initD>initP ? perso2.nom : perso1.nom) + "-winner.png\" alt=\"" + (initD>initP ? perso2.nom : perso1.nom) + "\">");
+    document.write("<p>"+(initD>initP ? ("Le dragon prend l'initiative, vous attaque et vous inflige " + degatDragon) : ("Vous êtes le plus rapide, vous attaquez le dragon et lui infligez " + degatHero)) + " points de dommage !</p>");
     document.write("</li>")
 
 }

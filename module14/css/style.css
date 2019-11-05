@@ -1,0 +1,45 @@
+nav>ul>li a.text-secondary:hover {
+	background: black;
+	color: white!important;
+}
+
+
+nav{
+	border: 1px solid black;
+}
+
+nav form{
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+}
+
+@media screen and (min-width: 768px)
+{
+	nav form{
+		border:0;
+	}
+}
+
+input{
+	display: none;
+}
+
+label{
+	padding:  0.3rem 0.75rem 0.75rem 0.75rem;
+	background-color: #52AB52;
+	color: white;	
+}
+
+form i{
+	font-size: 1.75rem;
+	position: relative;
+	top:5px;
+}
+
+label:hover{
+	cursor: pointer;
+}
+
+main{
+	width: 95%;
+}
