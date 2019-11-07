@@ -23,6 +23,28 @@ body {
     cursor: pointer;
 }
 
+#reset-button {
+    position: absolute;
+    left:400px;
+    bottom: 100px;
+    width:75px;
+    height:75px;
+    cursor: pointer;
+    background-color: yellow;
+}
+
+
+#cancel-button {
+    position: absolute;
+    left:250px;
+    bottom: 100px;
+    width:75px;
+    height:75px;
+    cursor: pointer;
+}
+
+
+
 .disabled {
     filter:grayscale(100%);
     cursor: default;

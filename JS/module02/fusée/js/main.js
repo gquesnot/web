@@ -17,7 +17,9 @@
 /************************************************************************************/
 
 
-var button = document.getElementById("firing-button");
+var button_start = document.getElementById("firing-button");
+var button_cancel = document.getElementById("cancel-button");
+var button_reset = document.getElementById("reset-button");
 var rocket = document.getElementById("rocket");
 var lauching_ramp = document.getElementById("launching-ramp");
 var compteur= document.querySelector("#billboard>span");
@@ -26,19 +28,45 @@ var intervalId;
 var timeoutId;
 var time = 10;
 
-console.dir(button);
-console.dir(rocket);
-console.dir(lauching_ramp);
-console.dir(compteur);
 
-button.addEventListener("click", start);
+button_start.addEventListener("click", start);
+button_reset.addEventListener("click", reset_rocket);
+compteur.innerHTML = time;
 
 function start()
 {
-	button.classList.add("disabled");
-	button.removeEventListener("click", start);
+	button_cancel.classList.remove("disabled");
+	button_cancel.addEventListener("click", stop_rocket);
+	button_start.classList.add("disabled");
+	button_start.removeEventListener("click", start);
 	rocket.attributes[1].value="images/rocket2.gif";
 	intervalId = setInterval(show_time, 1000);
+}
+
+function stop_rocket()
+{
+	stop();
+	button_start.addEventListener("click", start);
+	button_start.classList.remove("disabled");
+	button_cancel.classList.add("disabled");
+
+}
+
+
+function reset_rocket()
+{
+	time = 10;
+	button_cancel.removeEventListener("click", stop_rocket);
+	button_start.addEventListener("click", start);
+	button_start.classList.remove("disabled");
+	button_cancel.classList.add("disabled");
+	stop();
+	rocket.attributes[1].value="images/rocket1.png";
+	compteur.innerHTML = time;
+
+
+
+
 }
 
 
@@ -54,6 +82,8 @@ function show_time()
 		stop();
 		rocket.attributes[1].value="images/rocket3.gif";
 		lauch_start();
+		button_cancel.removeEventListener("click", stop_rocket);
+		button_cancel.classList.add("disabled");
 	}
 	compteur.innerHTML = time;
 	time--;
@@ -83,3 +113,4 @@ for (var i = 0 ;i < 150 ;i++)
 		img.classList.add("big");
 	document.body.appendChild(img);
 }
+
