@@ -4,7 +4,7 @@ nav>ul>li a.text-secondary:hover {
 }
 
 
-nav{
+header >nav{
 	border: 1px solid black;
 }
 
@@ -40,6 +40,16 @@ label:hover{
 	cursor: pointer;
 }
 
+
+
 main{
 	
+}
+
+ul{
+
+}
+
+li{
+	list-style: none;
 }
