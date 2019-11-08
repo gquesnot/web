@@ -17,6 +17,8 @@
 /************************************************************************************/
 
 
+var plus = document.getElementById("plus");
+
 var button_start = document.getElementById("firing-button");
 var button_cancel = document.getElementById("cancel-button");
 var button_reset = document.getElementById("reset-button");
@@ -26,7 +28,8 @@ var compteur= document.querySelector("#billboard>span");
 var main = document.querySelector("main");
 var intervalId;
 var timeoutId;
-var time = 10;
+var time = 0;
+var k = 17;
 
 
 button_start.addEventListener("click", start);
@@ -60,14 +63,13 @@ function reset_rocket()
 	button_start.addEventListener("click", start);
 	button_start.classList.remove("disabled");
 	button_cancel.classList.add("disabled");
+	rocket.classList.remove("tookOff");
 	stop();
 	rocket.attributes[1].value="images/rocket1.png";
 	compteur.innerHTML = time;
 
-
-
-
 }
+
 
 
 function lauch_start()
@@ -84,6 +86,8 @@ function show_time()
 		lauch_start();
 		button_cancel.removeEventListener("click", stop_rocket);
 		button_cancel.classList.add("disabled");
+		intervalId = setInterval(after_launch, 1000);
+
 	}
 	compteur.innerHTML = time;
 	time--;
@@ -99,7 +103,6 @@ function stop()
 for (var i = 0 ;i < 150 ;i++)
 {
 	var classe = Math.floor(Math.random()*3)+1;
-	console.log(classe);
 	var img = document.createElement("div");
 	img.alt="star";
 	img.style.top = (Math.random()*100)+"%";
@@ -114,3 +117,18 @@ for (var i = 0 ;i < 150 ;i++)
 	document.body.appendChild(img);
 }
 
+
+
+
+
+
+function after_launch()
+{
+	if(k == 0)
+	{
+		rocket.attributes[1].value="images/rocket1.png";
+		stop();
+	}
+k--
+
+}

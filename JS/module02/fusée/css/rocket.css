@@ -5,6 +5,7 @@
 body {
     margin: 0;
     overflow: hidden;
+
 }
 
 #moon {
@@ -91,10 +92,11 @@ body {
 }
 
 #rocket.tookOff {
-    bottom: 2000px;
-    left: 75%;
-    transform: rotate(30deg) scale(0.5);
+    bottom: 56%;
+    left: 85%;
+    transform: rotate(30deg) scale(0.25);
 }
+
 
 .star {
     position: absolute;

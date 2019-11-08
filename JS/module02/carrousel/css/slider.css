@@ -15,15 +15,19 @@ h1{
 	color: #155770
 }
 
-ul{
+nav{
+		margin-bottom: 3rem;
+}
+
+#img{
 	list-style: none;
 	display: none;
-	justify-content: flex-end;
-	margin-right: 20rem;
+	justify-content: center;
+	margin-left: 15%; 
 }
 
 
-li{
+#img>li{
 	padding: 0.25rem;
 	border: 1px solid #969696;
 	background-color: #E4E4E4;
@@ -32,15 +36,34 @@ li{
 }
 
 
+#puce{
+	display: flex;
+	justify-content: center;
+	padding: 0;
+	margin-left: 15%;
+	margin-top: 3rem;
+	list-style: none;
+}
+
+#puce>li{
+	margin: 0.5rem;
+	padding : 1rem;
+	font-size: 4rem;
+	cursor:pointer;
+}
+
+
+
 a{
 	text-decoration: none;
 	color: #298682;
 }
 figure{
 	transform: rotate(-4deg);
-	width: 33%;
-	margin-left: 35rem;
-		padding : 2rem;
+	width: 600px;
+	height: 500px;
+	margin: 0 0 0 40%;
+	padding : 0.5rem;
 
 
 }
@@ -49,15 +72,19 @@ img{
 	margin : 0 auto;
 	display: block;
 	width :100%;
+	height: 100%;
 		border-radius: 5%;
 	border: 1px solid white;
 	background-color: white;
-	padding: 1.5rem;
+	padding: 1rem;
 
 }
 
 figcaption{
 	text-align: center;
+	font-size: 3rem;
+	font-weight: bold;
+	color: #298682;
 }
 
 
@@ -65,6 +92,20 @@ figcaption{
 	font-size: 2;
 }
 
-.hide{
+#img.hide{
 	display : flex;
+}
+
+
+.green{
+	color: limegreen;
+}
+
+.random_select{
+	background-color: #C0C0C0;
+}
+
+
+.selected{
+	color: red;
 }
