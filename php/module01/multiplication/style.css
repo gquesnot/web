@@ -1,0 +1,15 @@
+.yellow{
+background-color:yellow;
+}
+
+td{
+	border-collapse: collapse;
+	border : 1px solid grey;
+}
+
+
+th,table{
+	border-collapse: collapse;
+	border : 1px solid black;
+
+}

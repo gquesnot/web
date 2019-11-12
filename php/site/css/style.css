@@ -1,0 +1,34 @@
+/* FONT FACE */
+/* Appelle les polices de la page */
+
+/*GLOBAL */
+/* Balises et class appelés à plusieurs endroits dans la page */
+
+/* HEADER */
+/* Ce qui concerne le header et la nav */
+
+/* MAIN */
+/* Ce qui concerne le corps du site */
+
+/* FOOTER */
+/* Ce qui concerne le footer */
+
+
+*{box-sizing: border-box;}
+
+
+
+header{
+	width: 90%;
+}
+
+header form ul{
+	display: flex;
+	justify-content: flex-end;
+	list-style: none;
+
+}
+
+header form li{
+	margin: 1rem ;
+}
