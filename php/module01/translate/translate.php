@@ -1,11 +1,18 @@
-  
+<!DOCTYPE html>
+<html>
+<head>
+    <title>bonjour</title>
+</head>
+<body>
+
 <?php
 
-	$sens= $_POST['sens'];
-	$mot = $_POST['mot'];
-	$set = true;
+    $mot= $_GET['mot'];
+    $langue = $_GET['langue'];
+    $set = true;
+    $reponse = "";
 
-  $dictionary =
+    $dictionary =
     [
         'cat'    => 'chat',
         'dog'    => 'chien',
@@ -14,22 +21,47 @@
         'sun'    => 'soleil'
     ];
 
-    if ($sens == 'anglais->francais')
+    if ($langue == 'anglais->francais')
     {
-    foreach ($dictionary as $i => $value) {
-    if ($i == $mot)
+    foreach ($dictionary as $key => $value) {
+    if ($key == $mot)
     {
-    	echo "La traduction de ".$sens." est de ".$value;
-    	$set = false;
+        $reponse = $value;
+        echo "La traduction ".$langue." de ".$mot." est ".$value;
+        $set = false;
+    }
+    }
+    if ($set == true)
+    {
+        echo "pas trouver";
+    }
+}
+else if ($langue == "francais->anglais")
+{
+    foreach ($dictionary as $key => $value) {
+    if ($value == $mot)
+    {
+        $reponse = $key;
+        echo "La traduction  ".$langue." de ".$mot." est ".$key;
+        $set = false;
+    }
+}
+    if ($set == true)
+    {
+        echo "pas trouver";
     }
 
-
-	}
-	if ($set == true)
-		echo "pas trouver";
 }
-else if ($sens == "francais->anglais")
+else
 {
+    echo "pas trouver";
 
 }
+
+
+
+  header('Location: index.php?reponse='.$reponse.'&mot='.$mot);
+  exit();
 ?>
+</body>
+</html>
