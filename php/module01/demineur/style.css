@@ -1,0 +1,64 @@
+
+
+table{
+	margin-top: 4rem;
+	margin-left: 4rem;
+}
+
+table, td, tr{
+	border-collapse: collapse;
+	border : 1px solid black;
+}
+
+td{
+	height: 60px;
+	width : 60px;
+	text-align: center;
+	z-index: 1;
+	vertical-align: middle;
+	padding-top: 5px;
+
+}
+
+div{
+	z-index: 2;
+	position: relative;
+	width: 40px;
+	height: 40px;
+	top: -15px;
+	left: 5px;
+	margin : 0;
+	padding: 0;
+
+	background-color: white;
+}
+
+
+.reveal{
+	display: none;
+
+
+}
+
+
+h2{
+	display: none;
+}
+
+.lose{
+	display: block;
+	position : absolute;
+	top : 200px;
+	left: 500px;
+	z-index: 3;
+	font-size: 6rem;
+	transform: rotate(-45deg);
+}
+
+.win{
+	display: block;
+	position: absolute;
+	top: 250px;
+	left: 500px;
+	font-size: 5rem;
+}
