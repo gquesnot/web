@@ -6,6 +6,7 @@ function generate_tab(height, width, nb_mine) {
     var tab_mine = new Array(nb_mine);
     var total = height * width;
     var index = 0;
+
     for (var i = 0; i < height; i++) {
         tab[i] = new Array(width);
     }
@@ -98,6 +99,8 @@ function show_tab(tab, height, width)
 				cell.dataset.bomb = 1;
 			else
 				cell.dataset.bomb = 0;
+			cell.dataset.x = i;
+			cell.dataset.y = j;
 		}
 
 	}
@@ -111,17 +114,47 @@ function show_tab(tab, height, width)
 
 
 
-function add_click()
+function add_click(tab, height, width)
 {
-	var i = 0;
+	let i = 0;
 	var elem = document.getElementsByTagName("div");
 	var td = document.getElementsByTagName("td")
+
 	while (i < elem.length)
 	{
+
 		elem[i].addEventListener("click", function(){this.classList.add("reveal");});
+		elem[i].addEventListener("click", function(){reveal_all(tab, this.dataset.x , this.dataset.y, height, width);});
+
 		i++;
 	}
 }
+
+
+
+function get_null_around(tab, tab_null)
+{
+
+}
+
+
+
+function reveal_all(tab,x,y, height, width)
+{
+	var elem = document.getElementsByTagName("div");
+	var td = document.getElementsByTagName("td");
+	var tab_null = [];
+	var tab_res = [];
+
+	console.log("x: "+x+"//y: "+y);
+
+	
+
+
+
+}
+
+
 
 
 function check_win()
@@ -131,6 +164,7 @@ function check_win()
 	var div = document.getElementsByTagName("div");
 	var td = document.getElementsByTagName("td");
 	var res = document.getElementsByTagName("h2")[0];
+
 	while (i < div.length)
 	{
 
@@ -154,7 +188,8 @@ function add_bomb()
 {
 	var i = 0;
 	var td = document.getElementsByTagName("td");
-		var div = document.getElementsByTagName("div");
+	var div = document.getElementsByTagName("div");
+
 	while (i < td.length)
 	{
 		if (td[i].dataset.bomb == 1)
@@ -177,6 +212,7 @@ function add_bomb()
  {
  	var i = 0;
  	var td = document.getElementsByTagName("td");
+
  	while (i < td.length)
 	{
 		if (td[i].dataset.bomb == 0)
@@ -203,10 +239,10 @@ function start()
 var height = document.getElementById("height").value;
 var width = document.getElementById("width").value;
 var nb_mine = document.getElementById("nb_mine").value;
-
 var tab = generate_tab(height, width, nb_mine);
+
 show_tab(tab, height, width);
- add_click();
+ add_click(tab, height, width);
 add_bomb();
 }
 

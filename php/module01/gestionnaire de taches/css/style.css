@@ -1,0 +1,133 @@
+/* FONT FACE */
+/* Appelle les polices de la page */
+
+/*GLOBAL */
+/* Balises et class appelés à plusieurs endroits dans la page */
+
+/* HEADER */
+/* Ce qui concerne le header et la nav */
+
+/* MAIN */
+/* Ce qui concerne le corps du site */
+
+/* FOOTER */
+/* Ce qui concerne le footer */
+
+
+*{box-sizing: border-box; transition: 0.5s;}
+
+
+body{
+	background-color: #273E45;
+
+}
+
+main{
+	background-color: #E8F6FF;
+		width: 90%;
+		padding-bottom: 3rem;
+}
+
+
+h1{
+	text-align: center;
+	color: red;
+}
+
+ul{
+	list-style: none;
+	padding: 0;
+}
+
+textarea{
+	resize: none;
+	height: 75px;
+	width: 200px;
+}
+
+
+label{
+	margin-right: 3rem;
+}
+
+fieldset{
+	width: 90%;
+	margin: 0 auto;
+	border-radius: 5px;
+
+}
+
+
+fieldset>ul>li{
+	margin-bottom: 1rem;
+}
+
+
+legend{
+	margin: 0 1rem 0 1rem;
+	display: block;
+}
+
+
+input{
+
+	border: 1px solid black;
+}
+
+
+
+#supprimer, #ajouter{
+	padding: 0.5rem 1rem;
+	background-color: #273E45;
+	color: white;
+	border-radius: 5px;
+}
+
+
+#task{
+	width: 90%;
+	margin : 0 auto;
+}
+
+#task > li:last-child{
+	margin-bottom: 2rem;
+	margin-top: 2rem;
+}
+
+#task li{
+	margin : 0.5rem 0;
+}
+
+#task p{
+	display : none;
+	width: 80%;
+	margin-left: 2rem;
+	border : 1px solid black;
+	padding: 1rem;
+	border-radius: 5px; 
+}
+
+#task >li:hover p{
+	display : block;
+
+}
+
+
+#task input:first-of-type{
+	margin-right: 0.5rem;
+}
+
+
+
+
+.high{
+	color : red;
+}
+
+.normal{
+	color: black;
+}
+
+.low{
+	color: green;
+}
