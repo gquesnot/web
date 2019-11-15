@@ -101,6 +101,8 @@ function show_tab(tab, height, width)
 				cell.dataset.bomb = 0;
 			cell.dataset.x = i;
 			cell.dataset.y = j;
+			cell.dataset.height = height;
+			cell.dataset.width = width;
 		}
 
 	}
@@ -124,7 +126,7 @@ function add_click(tab, height, width)
 	{
 
 		elem[i].addEventListener("click", function(){this.classList.add("reveal");});
-		elem[i].addEventListener("click", function(){reveal_all(tab, this.dataset.x , this.dataset.y, height, width);});
+		td[i].addEventListener("click", reveal_all);
 
 		i++;
 	}
@@ -139,19 +141,266 @@ function get_null_around(tab, tab_null)
 
 
 
-function reveal_all(tab,x,y, height, width)
+
+function get_tab_from_td()
+{
+	var td = document.getElementsByTagName("td");
+	var height = td[0].dataset.height;
+	var width = td[0].dataset.width;
+	var array = new Array(height);
+	for (var i = 0; i < height; i++)
+	{
+		array[i] = new Array(width);
+	}
+	for (var j = 0; j < height; j++)
+	{
+		for (i = 0; i < width; i++)
+		{
+			array[j][i] = parseInt(td[j*width + i].innerHTML);
+		}
+	}
+return (array);
+
+}
+
+function get_null_around(tab, height, width, base_coor)
+{
+	var array = new Array();
+
+	if (base_coor.x - 1 >= 0)
+	{
+		if (tab[base_coor.y][base_coor.x - 1] == 0)
+			{
+			var coor = new Array(2);
+			 coor[0]= base_coor.x - 1;
+			coor[1] = base_coor.y;
+			array.push(coor);
+			}
+		if (base_coor.y - 1 >= 0)
+		{
+			if (tab[base_coor.y -1][base_coor.x -1] == 0)
+			{
+
+				var coor = new Array(2);
+				coor[0] = base_coor.x - 1;
+			coor[1] = base_coor.y -1 ;
+			array.push(coor);
+			}
+		}
+		if (base_coor.y + 1 < height)
+		{
+			if (tab[base_coor.y + 1][base_coor.x -1] == 0)
+			{
+				var coor = new Array(2);
+				coor[0] = base_coor.x - 1;
+			coor[1] = base_coor.y +1 ;
+			array.push(coor);
+			}
+		}
+	}
+	if (base_coor.x +1 < width)
+	{
+		if (tab[base_coor.y][base_coor.x +1] == 0)
+			{
+				var coor = new Array(2);
+				coor[0] = base_coor.x + 1;
+			coor[1] = base_coor.y ;
+			array.push(coor);
+			}
+		if (base_coor.y - 1 >= 0)
+		{
+			if (tab[base_coor.y -1][base_coor.x +1] == 0)
+			{
+				var coor = new Array(2);
+				coor[0] = base_coor.x + 1;
+			coor[1] = base_coor.y -1 ;
+			array.push(coor); 
+			}
+		}
+
+		if (base_coor.y + 1 < height)
+		{
+			if (tab[base_coor.y +1][base_coor.x +1] == 0)
+			{
+				var coor = new Array(2);
+				coor[0] = base_coor.x + 1;
+			coor[1] = base_coor.y +1 ;
+			array.push(coor); 
+			}
+		}
+	}
+	if (base_coor.y -1 >= 0)
+	{
+		if (tab[base_coor.y -1][base_coor.x] == 0)
+			{
+				var coor = new Array(2);
+				coor[0] = base_coor.x;
+			coor[1] = base_coor.y -1 ;
+			array.push(coor); 
+			}
+	}
+	if (base_coor.y +1 < height)
+	{
+		if (tab[base_coor.y +1][base_coor.x] == 0)
+			{
+				var coor = new Array(2);
+				coor[0] = base_coor.x;
+			coor[1] = base_coor.y +1 ;
+			array.push(coor); 
+			}
+	}
+	return (array);
+
+}
+
+
+function array_remove(tab, index)
+{
+	var tmp = new Array();
+	var j = 0;
+
+	for(var j = 0; j < tab.length; j++)
+	{
+		if(j == index)
+			j++;
+		tmp.push(tab[j]);
+		j++;
+
+	}
+	return (tmp);
+}
+
+
+
+function check_double(tab, tab_tmp)
+{
+	var i = 0;
+	var j = 0;
+	if (tab_tmp[0] != null)
+	{
+	while (tab[i] != null)
+	{
+		while (tab_tmp[j] != null)
+		{
+			if (tab[i][0] == tab_tmp[j][0] && tab[i][1] == tab_tmp[j][1])
+			{
+				tab_tmp = array_remove(tab_tmp, j);
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	return (tab_tmp);
+}
+	return (null);
+}
+
+function remove_double(tab)
+{
+	for (var j = 0; j < tab.length; j++)
+	{
+		for (var i = 0; i < tab.length; i++)
+		{
+			if (tab[j][1] == tab[i][1] && tab[j][0] == tab[i][0] && i != j)
+			{
+				tab_tmp = array_remove(tab, i);
+			}
+		}
+	}
+}
+
+
+
+function show_log(string, tab)
+{
+	console.log(string + "//////////////");
+	var i = 0
+	while (tab[i] != undefined)
+	{
+		console.log("x: "+tab[i][0]+" y: "+tab[i][1]);
+		i++;
+	}
+}
+
+function array_in_coor(tab)
+{
+	var coor={
+		x: tab[0],
+		y: tab[1]
+	};
+	return(coor);
+}
+
+
+
+function reaveal_from_tab(tab, width)
+{
+	var elem = document.getElementsByTagName("div");
+	var i = 0;
+
+	while (tab[i] != null)
+	{
+		elem[tab[i][1]*width+tab[i][0]].classList.add("reveal");
+		i++;
+	}
+
+}
+
+
+
+function reveal_all()
 {
 	var elem = document.getElementsByTagName("div");
 	var td = document.getElementsByTagName("td");
-	var tab_null = [];
-	var tab_res = [];
-
-	console.log("x: "+x+"//y: "+y);
-
+	var i = 0;
 	
+	if (parseInt(this.innerHTML) == 0)
+	{
+	var res = new Array();
+	var tab = get_tab_from_td();
 
-
-
+	var nb_cell = this.dataset.width * this.dataset.height;
+	var coor = {
+		x:parseInt(this.dataset.x),
+		y:parseInt(this.dataset.y)
+	};
+	var tmp;
+	res.push(tmp = [coor.x, coor.y]);
+   var tab_null = get_null_around(tab ,parseInt(this.dataset.height),parseInt(this.dataset.width), coor);
+   // remove_double(tab_null);
+   tab_null = check_double(res, tab_null);
+   res.push(tab_null[0]);
+   coor = array_in_coor(tab_null[0]);
+   tab_null = array_remove(tab_null, 0);
+   show_log("res",res);
+   		show_log("null",tab_null);
+   		console.log(coor);
+   		console.log("!!!!!!!!!");
+	 while (tab_null != null)
+	 {
+		console.log(tab_null);
+    	tab_null = tab_null.concat(get_null_around(tab ,parseInt(this.dataset.height),parseInt(this.dataset.width), coor));
+    	
+    	// remove_double(tab_null);
+   		tab_null = check_double(res, tab_null);
+   	if (tab_null != undefined)
+   	{
+   		
+   		res.push(tab_null[0]);
+   		coor = array_in_coor(tab_null[0]);
+   		tab_null = array_remove(tab_null, 0);
+   		show_log("res",res);
+   		show_log("null",tab_null);
+   		console.log(coor);
+   		
+   		console.log("!!!!!!!!!");
+	}
+	
+	}
+	reaveal_from_tab(res, this.dataset.width);
+    
+}
 }
 
 
