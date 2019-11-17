@@ -31,7 +31,7 @@ function generate_tab(height, width, nb_mine) {
     return (tab);
 }
 
-
+//renvoie le nombre de mine autour des coordonnées x y 
 function getMineNumber(tab, x, y) {
     var nb_mine = 0;
     var x_tmp = x;
@@ -76,7 +76,7 @@ function getMineNumber(tab, x, y) {
 }
 
 
-//affiche 
+//affiche le demineur
 function show_tab(tab, height, width)
 {
 	var elem = document.getElementsByTagName("table")[0];
@@ -101,41 +101,26 @@ function show_tab(tab, height, width)
 	}
 }
 
-
-
-// generate_tab(9, 7, 10);
-
-
-
-
+//ajoute les evenements
 function add_click(tab, height, width)
 {
 	let i = 0;
-	var elem = document.getElementsByTagName("div");
+	var div = document.getElementsByTagName("div");
 	var td = document.getElementsByTagName("td")
 
 	while (i < elem.length)
 	{
 
-		elem[i].addEventListener("click", function(){this.classList.add("reveal");});
+		div[i].addEventListener("click", function(){this.classList.add("reveal");});
 		td[i].addEventListener("click", function(){this.classList.add("white");});
 		td[i].addEventListener("click", reveal_all);
-		elem[i].addEventListener("contextmenu", function(){this.classList.add("flag");});
-		elem[i].addEventListener('contextmenu', function(ev) {ev.preventDefault();return false;}, false);
+		div[i].addEventListener("contextmenu", function(){this.classList.add("flag");});
+		div[i].addEventListener('contextmenu', function(ev) {ev.preventDefault();return false;}, false);
 		i++;
 	}
 }
 
-
-
-function get_null_around(tab, tab_null)
-{
-
-}
-
-
-
-
+//renvoie un tableau crée à partir des valeurs des td
 function get_tab_from_td()
 {
 	var td = document.getElementsByTagName("td");
@@ -157,6 +142,7 @@ return (array);
 
 }
 
+//renvoie un tableau de coordonées des cases contenant un 0 autour de base_coor
 function get_null_around(tab, height, width, base_coor)
 {
 	var array = new Array();
@@ -247,6 +233,7 @@ function get_null_around(tab, height, width, base_coor)
 }
 
 
+//renvoie un tableau de coordonées des cases sans bombes autour de base_coor
 function get_not_bomb_around(tab, height, width, base_coor)
 {
 	var array = new Array();
@@ -337,27 +324,7 @@ function get_not_bomb_around(tab, height, width, base_coor)
 }
 
 
-
-
-
-function array_remove(tab, index)
-{
-	var tmp = new Array();
-	var j = 0;
-
-	for(var j = 0; j < tab.length; j++)
-	{
-		if(j == index)
-			j++;
-		tmp.push(tab[j]);
-		j++;
-
-	}
-	return (tmp);
-}
-
-
-
+//verifie qu'une coordonée n'est pas presente dans un tableau
 function check_if_coor_in_array(tab, coor)
 {
 	for (var i = 0; i < tab.length; i++)
@@ -370,6 +337,9 @@ function check_if_coor_in_array(tab, coor)
 	return (false);
 }
 
+
+
+//compare tab et tab_tmp renvoie tab_tmp sans les doubles 
 function check_double(tab, tab_tmp)
 {
 	var i = 0;
@@ -390,7 +360,7 @@ function check_double(tab, tab_tmp)
 
 
 
-
+//affiche un tableau de tableau avec x et y pour les logs
 function show_log(string, tab)
 {
 	console.log(string + "//////////////");
@@ -402,6 +372,7 @@ function show_log(string, tab)
 	}
 }
 
+//prend un tableau de 2 case et le transforme en obj coordonnée
 function array_in_coor(tab)
 {
 	if (tab)
@@ -418,15 +389,17 @@ return (undefined);
 
 
 
+
+//révéle les cases contenu dans tab (un tableau de coordonnées)
 function reveal_from_tab(tab, width)
 {
-	var elem = document.getElementsByTagName("div");
+	var	div = document.getElementsByTagName("div");
 	var td = document.getElementsByTagName("td");
 	var i = 0;
 
 	while (tab[i] != null)
 	{
-		elem[tab[i][1]*width+tab[i][0]].classList.add("reveal");
+		div[tab[i][1]*width+tab[i][0]].classList.add("reveal");
 		td[tab[i][1]*width+tab[i][0]].classList.add("white");
 		i++;
 	}
@@ -434,7 +407,7 @@ function reveal_from_tab(tab, width)
 }
 
 
-
+//retourne la concatenation de tab et tab_tmp en enlevant les doubles
 function compare_for_no_double(tab, tab_tmp)
 {
 	var i = 0;
@@ -451,7 +424,7 @@ function compare_for_no_double(tab, tab_tmp)
 	return (tab);
 }
 
-
+//révéle toutes les cases contenant des 0 autour de la case cliquez, recursivement 
 function reveal_all()
 {
 	var elem = document.getElementsByTagName("div");
@@ -499,7 +472,7 @@ function reveal_all()
 	
 }
 
-
+//affiche les cases du tableau à proximité des cases révéler par reveal_all()
 function reveal_near(tab, tab_res, width, height)
 {
 		var td  = document.querySelectorAll("td");
@@ -521,7 +494,7 @@ function reveal_near(tab, tab_res, width, height)
 	reveal_from_tab(res, width);
 }
 
-
+//verifie la victoire , les divs qui sont pas sur les bombes sont cachées 
 function check_win()
 {
 	var i = 0;
@@ -547,7 +520,8 @@ function check_win()
 	
 }
 
-function add_bomb()
+//ajoute les evenements sur les bombes
+function bomb_click()
 {
 	var i = 0;
 	var td = document.getElementsByTagName("td");
@@ -575,25 +549,27 @@ function add_bomb()
 	}
 }
 
+
+//block les events si le joueur perd
 function block_all()
 {
 	let i = 0;
-	var elem = document.getElementsByTagName("div");
+	var	div = document.getElementsByTagName("div");
 	var td = document.getElementsByTagName("td")
 
 	while (i < elem.length)
 	{
-		elem[i].removeEventListener("click", function(){this.classList.add("reveal");});
+		div[i].removeEventListener("click", function(){this.classList.add("reveal");});
 		td[i].removeEventListener("click", function(){this.classList.add("white");});
 		td[i].removeEventListener("click", reveal_all);
-		elem[i].removeEventListener("contextmenu", function(){this.classList.add("bomb");});
-		elem[i].removeEventListener('contextmenu', function(ev) {ev.preventDefault();return false;}, false);
+		div[i].removeEventListener("contextmenu", function(){this.classList.add("bomb");});
+		div[i].removeEventListener('contextmenu', function(ev) {ev.preventDefault();return false;}, false);
 		i++;
 	}
 }
 
 
-
+//affiche les bombes quand le joueur perd
 function show_bomb()
 {
 	var td = document.querySelectorAll("td");
@@ -611,7 +587,7 @@ function show_bomb()
 }
 
 
-
+//enleve la verificaton de la victoire à chaque click de td 
  function remove_win()
  {
  	var i = 0;
@@ -638,6 +614,8 @@ var tab = [
     [false, false, false, false, false, false, false]
 ];
 
+
+//function pour lancer le jeu
 function start()
 {
 var height = document.getElementById("height").value;
@@ -646,8 +624,8 @@ var nb_mine = document.getElementById("nb_mine").value;
 var tab = generate_tab(height, width, nb_mine);
 
 show_tab(tab, height, width);
- add_click(tab, height, width);
-add_bomb();
+add_click(tab, height, width);
+bomb_click();
 }
 
 
