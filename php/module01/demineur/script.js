@@ -17,7 +17,6 @@ function generate_tab(height, width, nb_mine) {
         }
         tab_mine[i] = random;
     }
-    console.log(tab_mine);
     for (i = 0; i < height; i++) {
         for (var j = 0; j < width; j++) {
             index = tab_mine.indexOf(i * width + j);
@@ -29,7 +28,6 @@ function generate_tab(height, width, nb_mine) {
                 tab[i][j] = false;
         }
     }
-    console.log(tab);
     return (tab);
 }
 
@@ -42,10 +40,6 @@ function getMineNumber(tab, x, y) {
     var y_length = tab.length;
     var j = 0;
     var i = 0;
-
-    console.log(x_length + "  " + y_length);
-
-
 
     //definie le depart et la taille de la boucle
     if (y >= y_length || x >= x_length || y < 0 || x < 0)
@@ -86,7 +80,6 @@ function getMineNumber(tab, x, y) {
 function show_tab(tab, height, width)
 {
 	var elem = document.getElementsByTagName("table")[0];
-	console.log(elem.innerHTML);
 	
 	for (var j = 0; j< height; j++)
 	{	
@@ -106,7 +99,6 @@ function show_tab(tab, height, width)
 		}
 
 	}
-	console.log(elem.innerHTML);
 }
 
 
@@ -166,7 +158,7 @@ return (array);
 function get_null_around(tab, height, width, base_coor)
 {
 	var array = new Array();
-
+	array = [];
 	if (base_coor.x - 1 >= 0)
 	{
 		if (tab[base_coor.y][base_coor.x - 1] == 0)
@@ -250,8 +242,100 @@ function get_null_around(tab, height, width, base_coor)
 			}
 	}
 	return (array);
-
 }
+
+
+function get_not_bomb_around(tab, height, width, base_coor)
+{
+	var array = new Array();
+	array = [];
+	if (base_coor.x - 1 >= 0)
+	{
+		if (tab[base_coor.y][base_coor.x - 1] != -1)
+			{
+			var coor = new Array(2);
+			 coor[0]= base_coor.x - 1;
+			coor[1] = base_coor.y;
+			array.push(coor);
+			}
+		if (base_coor.y - 1 >= 0)
+		{
+			if (tab[base_coor.y -1][base_coor.x -1] != -1)
+			{
+
+				var coor = new Array(2);
+				coor[0] = base_coor.x - 1;
+			coor[1] = base_coor.y -1 ;
+			array.push(coor);
+			}
+		}
+		if (base_coor.y + 1 < height)
+		{
+			if (tab[base_coor.y + 1][base_coor.x -1] != -1)
+			{
+				var coor = new Array(2);
+				coor[0] = base_coor.x - 1;
+			coor[1] = base_coor.y +1 ;
+			array.push(coor);
+			}
+		}
+	}
+	if (base_coor.x +1 < width)
+	{
+		if (tab[base_coor.y][base_coor.x +1] != -1)
+			{
+				var coor = new Array(2);
+				coor[0] = base_coor.x + 1;
+			coor[1] = base_coor.y ;
+			array.push(coor);
+			}
+		if (base_coor.y - 1 >= 0)
+		{
+			if (tab[base_coor.y -1][base_coor.x +1] != -1)
+			{
+				var coor = new Array(2);
+				coor[0] = base_coor.x + 1;
+			coor[1] = base_coor.y -1 ;
+			array.push(coor); 
+			}
+		}
+
+		if (base_coor.y + 1 < height)
+		{
+			if (tab[base_coor.y +1][base_coor.x +1] != -1)
+			{
+				var coor = new Array(2);
+				coor[0] = base_coor.x + 1;
+			coor[1] = base_coor.y +1 ;
+			array.push(coor); 
+			}
+		}
+	}
+	if (base_coor.y -1 >= 0)
+	{
+		if (tab[base_coor.y -1][base_coor.x] != -1)
+			{
+				var coor = new Array(2);
+				coor[0] = base_coor.x;
+			coor[1] = base_coor.y -1 ;
+			array.push(coor); 
+			}
+	}
+	if (base_coor.y +1 < height)
+	{
+		if (tab[base_coor.y +1][base_coor.x] != -1)
+			{
+				var coor = new Array(2);
+				coor[0] = base_coor.x;
+			coor[1] = base_coor.y +1 ;
+			array.push(coor); 
+			}
+	}
+	return (array);
+}
+
+
+
 
 
 function array_remove(tab, index)
@@ -272,43 +356,36 @@ function array_remove(tab, index)
 
 
 
+function check_if_coor_in_array(tab, coor)
+{
+	for (var i = 0; i < tab.length; i++)
+	{
+		if (coor[0] == tab[i][0] && coor[1] == tab[i][1])
+		{
+			return (true);
+		}
+	}
+	return (false);
+}
+
 function check_double(tab, tab_tmp)
 {
 	var i = 0;
 	var j = 0;
-	if (tab_tmp[0] != null)
+	var tmp = new Array();
+
+	while (i < tab_tmp.length)
 	{
-	while (tab[i] != null)
-	{
-		while (tab_tmp[j] != null)
+		if (!check_if_coor_in_array(tab,tab_tmp[i]))
 		{
-			if (tab[i][0] == tab_tmp[j][0] && tab[i][1] == tab_tmp[j][1])
-			{
-				tab_tmp = array_remove(tab_tmp, j);
-			}
-			j++;
+			tmp.push(tab_tmp[i]);
 		}
-		j = 0;
 		i++;
 	}
-	return (tab_tmp);
-}
-	return (null);
+	return (tmp);
 }
 
-function remove_double(tab)
-{
-	for (var j = 0; j < tab.length; j++)
-	{
-		for (var i = 0; i < tab.length; i++)
-		{
-			if (tab[j][1] == tab[i][1] && tab[j][0] == tab[i][0] && i != j)
-			{
-				tab_tmp = array_remove(tab, i);
-			}
-		}
-	}
-}
+
 
 
 
@@ -325,16 +402,21 @@ function show_log(string, tab)
 
 function array_in_coor(tab)
 {
+	if (tab)
+	{
 	var coor={
 		x: tab[0],
 		y: tab[1]
 	};
+
 	return(coor);
+}
+return (undefined);
 }
 
 
 
-function reaveal_from_tab(tab, width)
+function reveal_from_tab(tab, width)
 {
 	var elem = document.getElementsByTagName("div");
 	var i = 0;
@@ -349,61 +431,91 @@ function reaveal_from_tab(tab, width)
 
 
 
+function compare_for_no_double(tab, tab_tmp)
+{
+	var i = 0;
+
+	while (i < tab_tmp.length)
+	{
+		if (!tab.includes(tab_tmp[i]))
+		{
+			tab.push(tab_tmp[i]);
+		}
+		i++;
+	}
+	
+	return (tab);
+}
+
+
 function reveal_all()
 {
 	var elem = document.getElementsByTagName("div");
 	var td = document.getElementsByTagName("td");
 	var i = 0;
-	
-	if (parseInt(this.innerHTML) == 0)
-	{
 	var res = new Array();
 	var tab = get_tab_from_td();
-
-	var nb_cell = this.dataset.width * this.dataset.height;
+	var height = parseInt(this.dataset.height);
+	var width = parseInt(this.dataset.width);
+	var nb_cell = width * height;
 	var coor = {
 		x:parseInt(this.dataset.x),
 		y:parseInt(this.dataset.y)
 	};
-	var tmp;
-	res.push(tmp = [coor.x, coor.y]);
-   var tab_null = get_null_around(tab ,parseInt(this.dataset.height),parseInt(this.dataset.width), coor);
-   // remove_double(tab_null);
-   tab_null = check_double(res, tab_null);
-   res.push(tab_null[0]);
-   coor = array_in_coor(tab_null[0]);
-   tab_null = array_remove(tab_null, 0);
-   show_log("res",res);
-   		show_log("null",tab_null);
-   		console.log(coor);
-   		console.log("!!!!!!!!!");
-	 while (tab_null != null)
-	 {
-		console.log(tab_null);
-    	tab_null = tab_null.concat(get_null_around(tab ,parseInt(this.dataset.height),parseInt(this.dataset.width), coor));
-    	
-    	// remove_double(tab_null);
-   		tab_null = check_double(res, tab_null);
-   	if (tab_null != undefined)
-   	{
-   		
-   		res.push(tab_null[0]);
-   		coor = array_in_coor(tab_null[0]);
-   		tab_null = array_remove(tab_null, 0);
-   		show_log("res",res);
-   		show_log("null",tab_null);
-   		console.log(coor);
-   		
-   		console.log("!!!!!!!!!");
+	var tmp_primary;
+	var tmp_secondary;
+
+	if (parseInt(this.innerHTML) == 0)
+	{
+		tmp_primary = get_null_around(tab ,height,width, coor);
+		if (tmp_primary != null)
+		{
+
+			res.push(tmp_primary[0]);
+			coor = array_in_coor(tmp_primary[0]);
+			while (tmp_primary != null && coor != undefined)
+				{
+					tmp_primary.shift();
+					tmp_secondary=  get_null_around(tab ,height,width, coor);
+					tmp_primary = compare_for_no_double(tmp_primary, tmp_secondary);
+					if (tmp_primary[0] != undefined)
+					{
+					tmp_primary = check_double(res, tmp_primary);
+					}
+					res.push(tmp_primary[0]);
+					coor = array_in_coor(tmp_primary[0]);
+				
+					i++;
+
+				}
+		}
+		reveal_from_tab(res, width);
+		reveal_near(tab, res, width, height);
 	}
 	
+}
+
+
+function reveal_near(tab, tab_res, width, height)
+{
+		var td  = document.querySelectorAll("td");
+		var i = 0;
+		var tmp = new Array();
+		var res = new Array();
+
+	while (i < tab_res.length -1)
+	{
+			
+		var coor = array_in_coor(tab_res[i]);
+		tmp =  get_not_bomb_around(tab ,height,width, coor);
+		if (res == undefined)
+			res = tmp;
+		tmp = check_double(res, tmp);
+		res = res.concat(tmp);
+		i++;
 	}
-	reaveal_from_tab(res, this.dataset.width);
-    
+	reveal_from_tab(res, width);
 }
-}
-
-
 
 
 function check_win()
@@ -430,8 +542,6 @@ function check_win()
 	}
 	
 }
-
-
 
 function add_bomb()
 {
