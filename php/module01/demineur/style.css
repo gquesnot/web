@@ -7,7 +7,7 @@ table{
 
 table, td, tr{
 	border-collapse: collapse;
-	border : 1px solid black;
+	border : 1px solid #888888;
 }
 
 td{
@@ -17,6 +17,7 @@ td{
 	z-index: 1;
 	vertical-align: middle;
 	padding-top: 5px;
+	background-color: #DBDBDB;
 
 }
 
@@ -31,6 +32,7 @@ div{
 	padding: 0;
 	background-color: white;
 	transform:scale(2);
+	background-color: #DBDBDB;
 }
 
 
@@ -38,6 +40,10 @@ div{
 	display: none;
 
 
+}
+
+.white{
+	background-color: white;
 }
 
 
@@ -61,4 +67,20 @@ h2{
 	top: 250px;
 	left: 500px;
 	font-size: 5rem;
+}
+
+.flag{
+	background : no-repeat bottom url("img/flag.ico");
+	background-size: 100%;
+}
+
+
+.bomb{
+	background: no-repeat center url("img/mine2.ico");
+	background-size: 100%;
+}
+
+.redbomb{
+	background: no-repeat center url("img/mine.ico");
+	background-size: 100%;
 }

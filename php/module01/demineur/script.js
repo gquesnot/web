@@ -1,6 +1,6 @@
 "use strict"
 
-
+//genere un tableau avec une hauteur , largeur et un nombre de mine
 function generate_tab(height, width, nb_mine) {
     var tab = new Array(height);
     var tab_mine = new Array(nb_mine);
@@ -76,7 +76,7 @@ function getMineNumber(tab, x, y) {
 }
 
 
-
+//affiche 
 function show_tab(tab, height, width)
 {
 	var elem = document.getElementsByTagName("table")[0];
@@ -118,8 +118,10 @@ function add_click(tab, height, width)
 	{
 
 		elem[i].addEventListener("click", function(){this.classList.add("reveal");});
+		td[i].addEventListener("click", function(){this.classList.add("white");});
 		td[i].addEventListener("click", reveal_all);
-
+		elem[i].addEventListener("contextmenu", function(){this.classList.add("flag");});
+		elem[i].addEventListener('contextmenu', function(ev) {ev.preventDefault();return false;}, false);
 		i++;
 	}
 }
@@ -419,11 +421,13 @@ return (undefined);
 function reveal_from_tab(tab, width)
 {
 	var elem = document.getElementsByTagName("div");
+	var td = document.getElementsByTagName("td");
 	var i = 0;
 
 	while (tab[i] != null)
 	{
 		elem[tab[i][1]*width+tab[i][0]].classList.add("reveal");
+		td[tab[i][1]*width+tab[i][0]].classList.add("white");
 		i++;
 	}
 
@@ -552,19 +556,60 @@ function add_bomb()
 	while (i < td.length)
 	{
 		if (td[i].dataset.bomb == 1)
+		{
 			td[i].addEventListener("click", function(){
 				var res = document.getElementsByTagName("h2")[0];
 				res.innerHTML = "YOU LOSE";
 				res.classList.add("lose");
+					show_bomb();
+				this.classList.add("redbomb");
 				remove_win();
-			});
+				block_all();
 			
+			});
+		}	
 		else{
 			td[i].addEventListener("click", function(){check_win();});
 		}
 		i++;
 	}
 }
+
+function block_all()
+{
+	let i = 0;
+	var elem = document.getElementsByTagName("div");
+	var td = document.getElementsByTagName("td")
+
+	while (i < elem.length)
+	{
+		elem[i].removeEventListener("click", function(){this.classList.add("reveal");});
+		td[i].removeEventListener("click", function(){this.classList.add("white");});
+		td[i].removeEventListener("click", reveal_all);
+		elem[i].removeEventListener("contextmenu", function(){this.classList.add("bomb");});
+		elem[i].removeEventListener('contextmenu', function(ev) {ev.preventDefault();return false;}, false);
+		i++;
+	}
+}
+
+
+
+function show_bomb()
+{
+	var td = document.querySelectorAll("td");
+	var div = document.querySelectorAll("div")
+
+	for (var i = 0; i < td.length; i++)
+	{
+		if (td[i].dataset.bomb == 1)
+		{
+			td[i].classList.add("bomb");
+			div[i].classList.add("reveal");
+		}
+	}
+
+}
+
 
 
  function remove_win()
