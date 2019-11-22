@@ -1,0 +1,27 @@
+body{font-size: 62.5%;, font-size: 1.6rem;}
+
+
+h1{
+	text-align: center;
+}
+
+
+#admin_hide{
+	display: none;
+	flex-direction: column;
+}
+
+#admin_hide.reveal{
+	display: flex;
+}
+
+
+
+ul{
+	list-style: none;
+	padding : 0;
+}
+
+label{
+	font-size: 1.2rem;
+}

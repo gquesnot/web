@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>TITRE DU PROJET</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+    	<h1>encore un blog ?! #nonmaisallo</h1>	
+		<ul>
+		<li id="admin">Administration
+		<ul id="admin_hide">
+			<form action="admin.php" method="post">
+			 <li><label for="user" >user: </label>
+        <input type="text" name="user" id="user"></li>
+         <li><label for="password" >password: </label>
+        <input type="password" name="password" id="user"></li>
+        <li><input type="submit" value="s'identifier"></li>
+    </form>
+		</ul>
+	</li>
+</ul>
+      	<a id="menu_1" hre="index.php">Acceuil</a>
+		
+		<?php foreach ($articles as $article):?>
+			<article>
+				<h2><?=$article['art_titre']?></h2>	
+				<p><?=$article['art_contenu']?></p>
+				<p>Rédigé par <?= $article['uti_prenom'] . " " . $article['uti_nom'] . " le " . $article['art_date'] ?></p>
+			</article>
+		<?php endforeach; ?>
+    </main>
+    <footer>
+     
+    </footer>
+    	<script src="js/script.js"></script>
+</body>
+
+
+</html>
