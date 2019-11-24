@@ -11,7 +11,7 @@
 	function getAllArticle()
 	{
 		$db = connectToDb();
-		$query = $db->query('SELECT uti_nom, uti_prenom, art_contenu, art_date, art_titre FROM article INNER JOIN utilisateur ON article.uti_id = utilisateur.uti_id');
+		$query = $db->query('SELECT art_id , uti_nom, uti_prenom, art_contenu, art_date, art_titre FROM article INNER JOIN utilisateur ON article.uti_id = utilisateur.uti_id');
 		return ($query->fetchAll(PDO::FETCH_ASSOC));
 	}
 

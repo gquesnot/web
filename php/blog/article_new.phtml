@@ -16,11 +16,50 @@
     <main>
     	<h1>encore un blog ?! #nonmaisallo</h1>
   		<a id="admin_link" href="admin.php">Administration</a>
+
+         <a id="menu_1" href="article_new.php">Rédiger un nouvel article</a>
+            
+            <form action="article_new.php" method="post">
+                <fieldset id="new_article">
+                    <legend>Nouvel article</legend>
+                    <ul>
+                    <li><label for="title">Titre :</label></li>
+                    <li><input id="title" name="title" type="text" size="35" value="<?=isset($_POST['title']) ? $_POST['title'] : ""?>"></li>
+                    <li><label for="content">Article :</label></li>
+                    <li><textarea name="content" id="content" cols="30" rows="10"><?=isset($_POST['title']) ? $_POST['title'] : ""?></textarea></li>
+                    <li><label for="auteur">Auteur :</label></li>
+                    <li><select name="auteur" id="auteur_id">
+
+                    <option value="">nom prenom</option>
+                    <option value="<?=$_SESSION['id']?>" <?php if(isset($_POST['auteur']) && $_POST['auteur'] == $_SESSION['id']) {echo " selected";}?>><?=$_SESSION['prenom']." ".$_SESSION['nom']?></option>
+                    <?php if(isset($users)): foreach($users as $user): ?>
+                        <option value="<?=$user['uti_id']?>"><?=$user['uti_prenom'] . " " . $user['uti_nom']?></option> 
+                        
+
+                    <?php endforeach; endif;?>
+                    </select></li>
+                    <li><label for="category">Catégorie :</label></li>
+                    <li><select name="category" id="category" >
+                      <!--   en php -->
+                        <option value="">Choisissez une categorie</option>
+                        <option value="voyages">voyages</option>
+                        <option value="Jeux-Vidéos">Jeux-Vidéos</option>
+                        <option value="Sport">Sport</option>
+                        <option value="Autres">Autres</option>
+                    </select></li>
+                    <li><button id="ok" type="submit">Envoyer</button>    </li>
+                    <ul>
+
+                </fieldset>
+            </form>
       
     </main>
     <footer>
      
     </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/form.js"></script>
 </body>
 
 </html>

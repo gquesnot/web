@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>TITRE DU PROJET</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+    	<h1>encore un blog ?! #nonmaisallo</h1>
+  		<a id="admin_link" href="admin.php">Administration</a>
+         <a id="menu_1" href="article.php">Article</a>
+         <h2><?= $article['art_titre'] ?><h2>
+            <p><?= $article['art_contenu'] ?></p>
+         <!--    je sais pas 
+          -->
+          <p>Rédigé par <?= $article['uti_prenom'] . " " . $article['uti_nom'] . " le " . $article['art_date']?></p>
+          <?php if (!empty($commentarys)): ?>
+            <hr>
+             <ul>
+            <?php foreach($commentarys as $commentary): ?>
+                <li><p>Rédigé par <?=$commentary['com_pseudo']?></p></li>
+                 <li><p><?= $commentary['com_contenu'] ?></p></li>
+         <?php endforeach; ?>
+          </ul> 
+      <?php endif;?>
+        <hr>
+        <fieldset id="new_commentary">
+            <legend>Nouveau commentaire</legend>
+            <ul>
+                <form action="article.php?id=<?= $_GET['id'] ?>" method="post">
+                <li><label for="pseudo">pseudo: </label><input name="pseudo" type="text"></li>
+                <li><label for="commentary">Commentaire: </label><textarea name="commentary"></textarea></textarea></li>
+            
+            </ul>
+            <li><input type="submit" value="Ajouter"></li>
+            <li><a href="article.php?id=<?= isset($_GET['id']) ?>">Annuler</a></li>
+            
+        </fieldset>
+    </form>
+    </main>
+    <footer>
+     
+    </footer>
+</body>
+
+</html>

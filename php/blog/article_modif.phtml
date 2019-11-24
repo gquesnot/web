@@ -16,7 +16,21 @@
     <main>
     	<h1>encore un blog ?! #nonmaisallo</h1>
   		<a id="admin_link" href="admin.php">Administration</a>
-      
+        <a id="menu_1" href="article_modif.php?id=<ph= $_GET['id'] ?>">Editer article</a>
+
+    <form method="post" action="article_modif.php?id=<?= $_GET['id'] ?>">
+      <fieldset id="new_commentary">
+            <legend>Article</legend>
+            <ul>
+                <li><label for="title">Titre: </label></li>
+                <li><input type="text" name="title" value="<?= $article['art_titre'] ?>"></li>
+                <li><label for="article">Article: </label></li>
+                <li><textarea name="content"><?= $article['art_contenu'] ?></textarea></li>
+                <li><input type="submit" value="Mettre à jour"></li>
+                <li><a href="article_modif.php?id=<?=$_GET['id']?>">Annuler</a></li>
+            </ul>
+        </fieldset>
+        </form>
     </main>
     <footer>
      

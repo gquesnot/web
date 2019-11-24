@@ -25,3 +25,46 @@ ul{
 label{
 	font-size: 1.2rem;
 }
+
+
+
+#new_article{
+	width: 50%;
+	margin: 0 auto;
+}
+
+#new_article ul{
+	display: flex;
+	flex-direction: column;
+}
+
+#new_article li{
+	width: 90%;
+	margin: 0 auto;
+}
+
+#new_article li:nth-child(odd){
+	margin-top: 0.75rem;
+}
+
+#new_article>input, #new_article>textarea, #new_article>option{
+	width:100%;
+}
+
+
+
+
+
+#legend_new_article>legend{
+	color: white;
+	padding: 3px 6px;
+	background-color: black;
+	text-align: center;
+
+}
+
+
+
+#register{
+	min-width: 60px;
+}

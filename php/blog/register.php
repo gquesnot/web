@@ -23,7 +23,7 @@ if(isset($_POST['user']) && isset($_POST['nom']) && isset($_POST['prenom']) && i
 		$query->bindValue(":password",password_hash($_POST['password'], PASSWORD_BCRYPT, $options), PDO::PARAM_STR);
 		$query->execute();
 		
-		echo "registred";
+		header('Location: index.php');
 	}
 	else{
 		echo "user or password already used";

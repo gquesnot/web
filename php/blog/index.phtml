@@ -23,8 +23,14 @@
         <input type="text" name="user" id="user"></li>
          <li><label for="password" >password: </label>
         <input type="password" name="password" id="user"></li>
-        <li><input type="submit" value="s'identifier"></li>
-    </form>
+        <li><input type="submit" value="s'identifier">
+        </form>
+        <form action="register.php">
+			<input type="submit" id="register" value="s'enregistrer">
+			</form>
+        </li>
+
+
 		</ul>
 	</li>
 </ul>
@@ -32,7 +38,7 @@
 		
 		<?php foreach ($articles as $article):?>
 			<article>
-				<h2><?=$article['art_titre']?></h2>	
+							<a href="article.php?id=<?=$article['art_id']?>"><?=$article['art_titre']?></a>	
 				<p><?=$article['art_contenu']?></p>
 				<p>Rédigé par <?= $article['uti_prenom'] . " " . $article['uti_nom'] . " le " . $article['art_date'] ?></p>
 			</article>
