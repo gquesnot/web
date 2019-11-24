@@ -108,7 +108,7 @@ function add_click(tab, height, width)
 	var div = document.getElementsByTagName("div");
 	var td = document.getElementsByTagName("td")
 
-	while (i < elem.length)
+	while (i < div.length)
 	{
 
 		div[i].addEventListener("click", function(){this.classList.add("reveal");});
@@ -557,7 +557,7 @@ function block_all()
 	var	div = document.getElementsByTagName("div");
 	var td = document.getElementsByTagName("td")
 
-	while (i < elem.length)
+	while (i < div.length)
 	{
 		div[i].removeEventListener("click", function(){this.classList.add("reveal");});
 		td[i].removeEventListener("click", function(){this.classList.add("white");});
