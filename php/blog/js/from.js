@@ -31,8 +31,15 @@ $(function() {
 		else{
 			return false;
 		}
+	});
 
+	$('#cancel').click(function(){
 
-
+		$('#title').val("");
+		$('#content').val("");
+		$("#category").val("");
+		return false;
 	});
 });
+
+

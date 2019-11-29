@@ -1,51 +1,45 @@
-<!DOCTYPE html>
-<html lang="fr">
 
-<head>
-    <title>TITRE DU PROJET</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-</head>
-
-<body>
-    <header>
-
-    </header>
     <main>
-    	<h1>encore un blog ?! #nonmaisallo</h1>
-  		<a id="admin_link" href="admin.php">Administration</a>
-         <a id="menu_1" href="article.php">Article</a>
-         <h2><?= $article['art_titre'] ?><h2>
-            <p><?= $article['art_contenu'] ?></p>
-         <!--    je sais pas 
-          -->
-          <p>Rédigé par <?= $article['uti_prenom'] . " " . $article['uti_nom'] . " le " . $article['art_date']?></p>
+         <a id="menu_1" href="article.php"><i class="far fa-file-alt"></i> Article</a>
+         <div id="art_art">
+         <h2><?= $article['art_titre'] ?></h2>
+                
+            <?php if($article['art_img'] != ""): ?>
+            <img id="art_img" src="<?=$article['art_img']?>" alt="<?=$article['art_titre']?>">
+                        <?php endif; ?>
+            <p id="art_p"><?= $article['art_contenu'] ?></p>
+
+          <p>Rédigé par <?= htmlspecialchars($article['aut_prenom']) . " " . htmlspecialchars($article['aut_nom']) . " le " . $article['art_datetime']?></p>
+           </div>
           <?php if (!empty($commentarys)): ?>
             <hr>
-             <ul>
+             <ul id="comment">
             <?php foreach($commentarys as $commentary): ?>
-                <li><p>Rédigé par <?=$commentary['com_pseudo']?></p></li>
-                 <li><p><?= $commentary['com_contenu'] ?></p></li>
+                <li><p><i class="fas fa-comment"></i> Rédigé par <?=  htmlspecialchars($commentary['com_pseudo'])?></p></li>
+                 <li><p><?= $commentary['com_texte']?></p></li>
          <?php endforeach; ?>
           </ul> 
       <?php endif;?>
         <hr>
         <fieldset id="new_commentary">
-            <legend>Nouveau commentaire</legend>
-            <ul>
+            <legend><i class="far fa-comment"></i> Nouveau commentaire</legend>
+           
                 <form action="article.php?id=<?= $_GET['id'] ?>" method="post">
-                <li><label for="pseudo">pseudo: </label><input name="pseudo" type="text"></li>
-                <li><label for="commentary">Commentaire: </label><textarea name="commentary"></textarea></textarea></li>
-            
-            </ul>
-            <li><input type="submit" value="Ajouter"></li>
-            <li><a href="article.php?id=<?= isset($_GET['id']) ?>">Annuler</a></li>
-            
-        </fieldset>
+                  <ul>
+                <li><label for="pseudo">pseudo: </label></li><li><input id="pseudo" name="pseudo" type="text" size="60"></li>
+                <li><label for="commentary">Commentaire: </label></li><li><textarea id="commentary" name="commentary" cols="59" rows="7"></textarea></li>
+                
+           <li ><input id="ok_com"  type="submit" value="Ajouter">
+            <input id="cancel_com" type="submit" value="Annuler"></li>
+            <ul>
+        
     </form>
+    </fieldset>
     </main>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <script src="trumbowyg/dist/trumbowyg.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/form.js"></script>
     <footer>
      
     </footer>

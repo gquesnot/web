@@ -1,52 +1,24 @@
-<!DOCTYPE html>
-<html lang="fr">
 
-<head>
-    <title>TITRE DU PROJET</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-</head>
-
-<body>
-    <header>
-
-    </header>
     <main>
-    	<h1>encore un blog ?! #nonmaisallo</h1>	
-		<ul>
-		<li id="admin">Administration
-		<ul id="admin_hide">
-			<form action="admin.php" method="post">
-			 <li><label for="user" >user: </label>
-        <input type="text" name="user" id="user"></li>
-         <li><label for="password" >password: </label>
-        <input type="password" name="password" id="user"></li>
-        <li><input type="submit" value="s'identifier">
-        </form>
-        <form action="register.php">
-			<input type="submit" id="register" value="s'enregistrer">
-			</form>
-        </li>
-
-
-		</ul>
-	</li>
-</ul>
-      	<a id="menu_1" hre="index.php">Acceuil</a>
+    	
+      	<a id="menu_1" hre="index.php"><i class="fas fa-home"></i> Acceuil</a>
 		
 		<?php foreach ($articles as $article):?>
-			<article>
-							<a href="article.php?id=<?=$article['art_id']?>"><?=$article['art_titre']?></a>	
-				<p><?=$article['art_contenu']?></p>
-				<p>Rédigé par <?= $article['uti_prenom'] . " " . $article['uti_nom'] . " le " . $article['art_date'] ?></p>
+			<article id="art_index">
+							<h3><a id="art_title" href="article.php?id=<?=$article['art_id']?>"><i class="far fa-hand-point-right"></i> <?=htmlspecialchars($article['art_titre'])?></a></h3>	
+				<?php if(strlen($article['art_contenu']) > 75)
+					$tmp = substr($article['art_contenu'], 0, 75) . " [...]";
+					else
+						$tmp = $article['art_contenu'];?>
+				<p><?=htmlspecialchars($tmp)?></p>
+				<p>Rédigé par <?= htmlspecialchars($article['aut_prenom']) . " " . htmlspecialchars($article['aut_nom']) . " le " . $article['art_datetime'] ?></p>
 			</article>
 		<?php endforeach; ?>
     </main>
     <footer>
      
     </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     	<script src="js/script.js"></script>
 </body>
 

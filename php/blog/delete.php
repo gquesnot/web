@@ -5,11 +5,11 @@
 	$db = connectToDb();
 	if (isset($_GET['id']) && !empty($_GET['id']))
 	{
-		$article = $db->prepare('SELECT uti_id FROM article WHERE art_id = :id');
+		$article = $db->prepare('SELECT aut_id FROM article WHERE art_id = :id');
 		$article->bindValue(':id', $_GET['id']);
 		$article->execute();
 		$article = $article->fetch();
-		if (!empty($article) && ($article['uti_id'] == $_SESSION['id'] || $_SESSION['id'] == 1))
+		if (!empty($article) && ($article['aut_id'] == $_SESSION['id'] || isset($_SESSION['admin'])))
 		{
 			$del_art = $db->prepare('DELETE FROM article WHERE art_id = :id');
 			$del_art->bindValue(':id', $_GET['id'], PDO::PARAM_INT);

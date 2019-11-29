@@ -4,7 +4,7 @@
 	if (isset($_POST['user']) && isset($_POST['password']))
 	{
 		$db = connectToDb();
-		$query = $db->prepare('SELECT uti_password, uti_nom, uti_prenom, uti_id FROM utilisateur WHERE uti_pseudo = :user');
+		$query = $db->prepare('SELECT aut_password, aut_nom, aut_prenom, aut_id FROM auteur WHERE aut_pseudo = :user');
 		$query->bindValue(':user', $_POST['user'], PDO::PARAM_STR);
 		$query->execute();
 
@@ -14,21 +14,29 @@
 			exit;
 		}
 		$user = $query->fetch();
-		if (password_verify($_POST['password'], $user['uti_password']))
+		if (password_verify($_POST['password'], $user['aut_password']))
 		{
-			echo 'hello';
 			$_SESSION['user'] = $_POST['user'];
-			$_SESSION['nom'] = $user['uti_nom'];
-			$_SESSION['prenom'] = $user['uti_prenom'];
-			$_SESSION['id'] = $user['uti_id'];
+			$_SESSION['nom'] = $user['aut_nom'];
+			$_SESSION['prenom'] = $user['aut_prenom'];
+			$_SESSION['id'] = $user['aut_id'];
 		}
-		
-
+		if (isAdmin($_SESSION['id']))
+		{
+			$_SESSION['admin'] = 1;
+		}
 		
 	}
 	if (isset($_SESSION['user']))
 	{
-		$articles = getMyArticle($_SESSION['id']);
+		if (isset($_SESSION['admin']))
+		{	
+			$articles = getAllArticle();
+		}
+		else
+			$articles = getMyArticle($_SESSION['id']);
+	
+		include 'header.phtml';
 		include 'admin.phtml';
 	}
 	else{

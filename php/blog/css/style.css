@@ -9,10 +9,11 @@ h1{
 #admin_hide{
 	display: none;
 	flex-direction: column;
+	position: absolute;
 }
 
 #admin_hide.reveal{
-	display: flex;
+	display: block;
 }
 
 
@@ -26,6 +27,17 @@ label{
 	font-size: 1.2rem;
 }
 
+
+#admin_hide{
+	background-color: #332D35;
+	padding: 0.5rem;
+	border : 10px solid #2FA1A4;
+	border-top: none;
+	margin: 0 auto;
+	top: 146px;
+	right: 0px;
+
+}
 
 
 #new_article{
@@ -52,7 +64,20 @@ label{
 }
 
 
+#admin_link, #admin, #menu_1{
+	color: #2FA1A4;
+}
 
+#admin{
+	margin-left : 85%;
+	font-size: 1.25rem;
+}
+
+#admin{
+	display: flex;
+	justify-content: center;
+
+}
 
 
 #legend_new_article>legend{
@@ -63,8 +88,225 @@ label{
 
 }
 
-
+body{
+	margin: 0;
+}
 
 #register{
 	min-width: 60px;
 }
+
+
+h1{
+	margin: 0;
+	padding: 2.5rem 0;
+}
+
+p{
+	font-size: 1rem;
+	margin: 0.5rem 0;
+}
+
+a{
+	text-decoration: none;
+	color: #2FA1A4;
+	
+}
+
+#header_title{
+	text-transform: uppercase;
+	
+}
+
+header{
+	background-color: #332D35;
+	border-bottom: 10px solid #2FA1A4;
+}
+
+#art_img{
+	max-width: 250px;
+	max-height: 250px;
+}
+
+#art_p{
+	font-size: 1rem;
+}
+
+#menu_1{
+	font-size: 1.5rem;
+	display: block;
+	margin : 2rem 0 2rem 2rem;
+}
+#art_index .far{
+	color: black;
+}
+
+#art_title{
+	font-size: 1.2rem;
+}
+
+#art_index{
+	margin-left: 5%;
+}
+
+#art_index p:last-of-type{
+	font-size: 0.75rem;
+}
+
+#admin_table{
+	width : 70%;
+	margin: 0 auto;
+	font-size: 1.25rem;
+}
+
+#admin_table caption{
+	margin-bottom: 1rem;
+}
+
+#disconnect{
+	position: absolute;
+	top : 30%;
+	left: 90%;
+	margin-right: 2rem;
+	padding: 1rem;
+	background-color: red;
+	border: none;
+	border-radius: 10px;
+}
+
+#new_article{
+	font-size: 1rem;
+	border-color: #2FA1A4;
+	color: #2FA1A4;
+	width : 35%;
+	margin : 0 auto 3rem auto;
+	border-radius: 10px;
+}
+
+#new_article label{
+	color: black;
+}
+
+#new_article select{
+	background-color: #DCDCDC;
+	border-color: grey;
+	height: 25px;
+	width: 90%;
+}
+
+#new_commentary{
+	border-color : #2FA1A4;
+	border-radius: 10px;
+	width : 30%;
+	margin: 0 auto;
+	margin-bottom: 4rem;
+	font-size: 1rem;
+}
+
+#new_commentary legend{
+	color: #2FA1A4;
+}
+
+#new_commentary li{
+	margin: 0.5rem 0 0.25rem 0;
+}
+
+
+#new_commentary li:last-of-type input, #new_commentary li:last-of-type a{
+	padding: 0.5rem 1rem;
+	border: none;
+	height : 33px;
+	width: 84.42px;
+	border-radius: 5px;
+	color: white;
+	font-size: 1rem;
+
+}
+
+#new_commentary li:last-of-type input{
+	background-color: green;
+}
+
+#new_commentary li:last-of-type input:last-of-type{
+	background-color: red;
+}
+
+
+
+.far.fa-comment{
+	color : #2FA1A4;
+}
+
+
+#comment{
+	margin-left : 2%;
+
+}
+
+#comment li:nth-child(even){
+	margin-bottom: 1.5rem;
+
+}
+main{
+	width: 90%;
+	margin: 0 auto;
+}
+
+#art_art h2{
+	font-size: 1.5rem;
+	font-weight: normal;
+}
+
+#art_art p:last-of-type{
+	font-size: 0.75rem;
+}
+
+
+#new_article li:last-of-type input{
+	padding: 0.5rem 1rem;
+	border: none;
+	height : 33px;
+	width: 84.42px;
+	border-radius: 5px;
+	color: white;
+	font-size: 1rem;
+	margin-right: 1rem;
+
+}
+
+#new_article li:last-of-type input, #art_modif li:last-of-type input
+{
+	background-color: green;
+}
+
+#new_article li:last-of-type button, #art_modif li:last-of-type input:last-of-type
+{
+	background-color: red;
+}
+
+
+#art_modif
+{
+	border-color : #2FA1A4;
+	border-radius: 10px;
+	width : 30%;
+	margin: 0 auto;
+	margin-bottom: 4rem;
+	font-size: 1rem;
+}
+
+#art_modif legend{
+	color: #2FA1A4;
+}
+
+ #art_modif li:last-of-type input
+ {
+ 		padding: 0.5rem 1rem;
+	border: none;
+	height : 33px;
+
+	border-radius: 5px;
+	color: white;
+	font-size: 1rem;
+	margin-right: 1rem;
+ }

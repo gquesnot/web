@@ -8,13 +8,17 @@ if(isset($_POST['user']) && isset($_POST['nom']) && isset($_POST['prenom']) && i
 	$users = getUserDb();
 	$set = true;
 	foreach ($users as $user) {
-		if ($user['uti_pseudo'] == $_POST['user'] || password_verify($_POST['password'], $user['uti_password']))
+		if ($user['aut_pseudo'] == $_POST['user'] || $_POST['email'] ==  $user['aut_email'])
 			$set = false;
 	}
 	if ($set == true)
 	{
+		$_POST['user'] = strip_tags($_POST['user'], '<h1><h2><h3><h4><br><ul><li><style><strong><em><del><sub><p><hr><blockquote>');
+		$_POST['nom'] = strip_tags($_POST['nom'], '<h1><h2><h3><h4><br><ul><li><style><strong><em><del><sub><p><hr><blockquote>');
+		$_POST['prenom'] = strip_tags($_POST['prenom'], '<h1><h2><h3><h4><br><ul><li><style><strong><em><del><sub><p><hr><blockquote>');
+		$_POST['email'] = strip_tags($_POST['email'], '<h1><h2><h3><h4><br><ul><li><style><strong><em><del><sub><p><hr><blockquote>');
 		$db = connectToDb();
-		$query = $db->prepare('INSERT INTO utilisateur (uti_pseudo, uti_nom, uti_prenom, uti_email, uti_password) VALUES (:user, :nom, :prenom, :email, :password);');
+		$query = $db->prepare('INSERT INTO auteur (aut_pseudo, aut_nom, aut_prenom, aut_email, aut_password) VALUES (:user, :nom, :prenom, :email, :password);');
 		$options = ['cost' => 11];
 		$query->bindValue(":user", $_POST['user'], PDO::PARAM_STR);
 		$query->bindValue(":nom", $_POST['nom'], PDO::PARAM_STR);
@@ -36,6 +40,6 @@ else{
 
 
 
-
+include 'header.phtml';
 include 'register.phtml';
 ?>

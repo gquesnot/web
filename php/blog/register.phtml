@@ -1,38 +1,20 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <title>TITRE DU PROJET</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-</head>
-
-<body>
-    <header>
-
-    </header>
     <main>
-    	<h1>encore un blog ?! #nonmaisallo</h1>
-  		<a id="admin_link" href="admin.php">Administration</a>
-      
-
-    
+        <a id="menu_1" href="register.php"><i class="fas fa-pen"></i> S'enregistrer</a>
       <form action="register.php" method="post">
-        <ul>
-        <li><label for="user" >user: </label>
-        <input type="text" name="user" id="user"></li>
-        <li><label for="nom">nom: </label>
-        <input type="text" name="nom" id="nom"></li>
-        <li><label for="prenom">prenom: </label>
-        <input type="text" name="prenom" id="prenom"></li>
-        <li><label for="email">email: </label>
-        <input type="text" name="email" id="email"></li>
-        <li><label for="password" >password: </label>
-        <input type="password" name="password" id="user"></li>
-        <li><input type="submit" value="s'enregistrer"></li>
-        </ul>
+        <table>
+        <tr><th>
+        <label for="user" >user: </label></th>
+        <td><input type="text" name="user" id="user"></td></tr>
+        <tr><th><label for="nom">nom: </label></th>
+        <td><input type="text" name="nom" id="nom"></td></tr>
+        <tr><th><label for="prenom">prenom: </label></th>
+        <td><input type="text" name="prenom" id="prenom"></td></tr>
+        <tr><th><label for="email">email: </label></th>
+        <td><input type="text" name="email" id="email"></td></tr>
+        <tr><th><label for="password" >password: </label></th>
+        <td><input type="password" name="password" id="user"></td></tr>
+        <tr><th></th><td><input type="submit" value="s'enregistrer"></td></tr>
+       </table>
         
 
       </form>
@@ -40,6 +22,8 @@
     <footer>
      
     </footer>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+    <script type="text/javascript" src="js/form.js"></script>
 </body>
 
 </html>

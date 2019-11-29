@@ -1,39 +1,34 @@
-<!DOCTYPE html>
-<html lang="fr">
 
-<head>
-    <title>TITRE DU PROJET</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-</head>
-
-<body>
-    <header>
-
-    </header>
     <main>
-    	<h1>encore un blog ?! #nonmaisallo</h1>
-  		<a id="admin_link" href="admin.php">Administration</a>
-
-         <a id="menu_1" href="article_new.php">Rédiger un nouvel article</a>
+    	
+         <a id="menu_1" href="article_new.php"><i class="fas fa-pen"></i> Rédiger un nouvel article</a>
             
-            <form action="article_new.php" method="post">
+            <form action="article_new.php" method="post" enctype="multipart/form-data">
                 <fieldset id="new_article">
-                    <legend>Nouvel article</legend>
+                    <legend><i class="far fa-sticky-note"></i> Nouvel article</legend>
                     <ul>
                     <li><label for="title">Titre :</label></li>
-                    <li><input id="title" name="title" type="text" size="35" value="<?=isset($_POST['title']) ? $_POST['title'] : ""?>"></li>
+                    <li><input id="title" name="title" type="text" size="58" value="<?=isset($_POST['title']) ? $_POST['title'] : ""?>"></li>
                     <li><label for="content">Article :</label></li>
-                    <li><textarea name="content" id="content" cols="30" rows="10"><?=isset($_POST['title']) ? $_POST['title'] : ""?></textarea></li>
+                    <li><textarea name="content" id="content" cols="57" rows="10"><?=isset($_POST['title']) ? $_POST['title'] : ""?></textarea></li>
+
+            
+                    <li><label for="img">Choisir une image: </label></li>
+
+                   <li> <input type="file" id="img" name="img"></li>
+
+
+
+
+
+
                     <li><label for="auteur">Auteur :</label></li>
                     <li><select name="auteur" id="auteur_id">
 
                     <option value="">nom prenom</option>
-                    <option value="<?=$_SESSION['id']?>" <?php if(isset($_POST['auteur']) && $_POST['auteur'] == $_SESSION['id']) {echo " selected";}?>><?=$_SESSION['prenom']." ".$_SESSION['nom']?></option>
+                    <option value="<?=$_SESSION['id']?>" <?php if(isset($_POST['auteur']) && $_POST['auteur'] == $_SESSION['id']) {echo " selected";}?>><?= htmlspecialchars($_SESSION['prenom']." ".$_SESSION['nom'])?></option>
                     <?php if(isset($users)): foreach($users as $user): ?>
-                        <option value="<?=$user['uti_id']?>"><?=$user['uti_prenom'] . " " . $user['uti_nom']?></option> 
+                        <option value="<?=$user['aut_id']?>"><?=htmlspecialchars($user['aut_prenom'] . " " . $user['aut_nom'])?></option> 
                         
 
                     <?php endforeach; endif;?>
@@ -42,12 +37,12 @@
                     <li><select name="category" id="category" >
                       <!--   en php -->
                         <option value="">Choisissez une categorie</option>
-                        <option value="voyages">voyages</option>
-                        <option value="Jeux-Vidéos">Jeux-Vidéos</option>
-                        <option value="Sport">Sport</option>
-                        <option value="Autres">Autres</option>
+                        <?php foreach($categorys as $category): ?>
+                        <option value="<?=$category['cat_id']?>"><?=$category['cat_nom']?></option>
+                   
+                        <?php endforeach; ?>
                     </select></li>
-                    <li><button id="ok" type="submit">Envoyer</button>    </li>
+                    <li><input id="ok" type="submit" value="Envoyer"><button id="cancel">Annuler</button>   </li>
                     <ul>
 
                 </fieldset>
@@ -58,8 +53,10 @@
      
     </footer>
     
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/form.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+    <script src="trumbowyg/dist/trumbowyg.min.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

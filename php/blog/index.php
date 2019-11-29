@@ -4,7 +4,7 @@ include 'function.php';
 
 
 
-
+include 'header.phtml';	
 include 'index.phtml';
 
 ?>

@@ -1,25 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <title>TITRE DU PROJET</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-</head>
-
-<body>
-    <header>
-
-    </header>
     <main>
-    	<h1>encore un blog ?! #nonmaisallo</h1>
-  		<a id="admin_link" href="admin.php">Administration</a>
-      <a id="menu_1" hre="admin.php">Panneau d'administration</a>
-      <a href="article_new.php">Rédiger un nouvel article</a>
+      <a id="menu_1" hre="admin.php"><i class="fas fa-cogs"></i> Panneau d'administration</a>
+      <a id="new_article" href="article_new.php">Rédiger un nouvel article</a>
       <button id="disconnect" >se deconnecter</button>
-      <table>
+      <table id="admin_table">
+        <caption>Liste des articles</caption>
         <thead>
             <tr>
             <th>Titre</th>
@@ -32,11 +16,15 @@
         <tbody>
             <?php foreach($articles as $article): ?>
                 <tr>
-                    <th><a href="article.php?id=<?=$article['art_id']?>"><?=$article['art_titre']?></a></th>
-                    <td><?=$article['art_contenu']?></td>
-                    <td><?=$_SESSION['prenom']?><br><?=$_SESSION['nom']?></td>
-                    <td><?="article type"?></td>
-                    <td><a href="article_modif.php?id=<?=$article['art_id']?>">mod</a><br><a href="delete.php?id=<?=$article['art_id']?>">del</a></td>
+                    <th><a href="article.php?id=<?=$article['art_id']?>"><?=htmlspecialchars($article['art_titre'])?></a></th>
+                    <?php if(strlen($article['art_contenu']) > 75)
+                    $tmp = substr($article['art_contenu'], 0, 75) . " [...]";
+                    else
+                        $tmp = $article['art_contenu'];?>
+                    <td><?=htmlspecialchars($tmp)?></td>
+                    <td><?=htmlspecialchars($article['aut_prenom'])?><br><?=htmlspecialchars($article['aut_nom'])?></td>
+                    <td><?=$article['cat_nom']?></td>
+                    <td><a href="article_modif.php?id=<?=$article['art_id']?>"><i class="fas fa-pen"></i></a><br><a href="delete.php?id=<?=$article['art_id']?>"><i class="fas fa-times"></i></a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -45,6 +33,7 @@
     <footer>
      
     </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="js/script.js"></script>
 </body>
     

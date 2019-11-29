@@ -1,33 +1,18 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <title>TITRE DU PROJET</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-</head>
-
-<body>
-    <header>
-
-    </header>
-    <main>
-    	<h1>encore un blog ?! #nonmaisallo</h1>
-  		<a id="admin_link" href="admin.php">Administration</a>
-        <a id="menu_1" href="article_modif.php?id=<ph= $_GET['id'] ?>">Editer article</a>
+        <main>
+        <a id="menu_1" href="article_modif.php?id=<ph= $_GET['id'] ?>"> <i class="fas fa-pen"></i> Editer article</a>
 
     <form method="post" action="article_modif.php?id=<?= $_GET['id'] ?>">
-      <fieldset id="new_commentary">
-            <legend>Article</legend>
+      <fieldset id="art_modif">
+            <legend><i class="far fa-sticky-note"></i> Article</legend>
             <ul>
                 <li><label for="title">Titre: </label></li>
-                <li><input type="text" name="title" value="<?= $article['art_titre'] ?>"></li>
+                <li><input id="title" type="text" name="title" size="60" value="<?= $article['art_titre'] ?>"></li>
                 <li><label for="article">Article: </label></li>
-                <li><textarea name="content"><?= $article['art_contenu'] ?></textarea></li>
-                <li><input type="submit" value="Mettre à jour"></li>
-                <li><a href="article_modif.php?id=<?=$_GET['id']?>">Annuler</a></li>
+                <li><textarea id="content" cols="59" rows="7" name="content"><?= $article['art_contenu'] ?></textarea></li>
+                <li><input id="ok_mod" type="submit" value="Mettre à jour">
+                    <input id="cancel_mod" type="submit" value="Annuler">
+                </li>
+                
             </ul>
         </fieldset>
         </form>
@@ -35,6 +20,10 @@
     <footer>
      
     </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="trumbowyg/dist/trumbowyg.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/form.js"></script>
 </body>
 
 </html>
