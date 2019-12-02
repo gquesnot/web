@@ -1,0 +1,26 @@
+ul{
+	display: flex;
+	padding: 0;
+	flex-wrap: wrap;
+	align-items:  center;
+	width: 100%;
+
+
+}
+
+li{
+	list-style: none;
+	margin-left: 3rem;
+	width : 45%;
+	margin-bottom: 5rem;
+	text-align: justify;
+}
+
+
+li:last-of-type{
+	width: 100%;
+}
+
+main{
+	
+	margin: 0 auto;
