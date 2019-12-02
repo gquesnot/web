@@ -1,171 +1,82 @@
+nav{
+	float: right;
+	font-size: 1.3em;
+	padding: 2rem;
+}
+
+body{
+	background : url("../img/fond.png");
+	margin: 0 auto;
+	font-family: Verdana, arial;
+		color: #686868;
+
+}
+
+nav, h1, h2, h3{
+	font-family: 'Oswald', sans-serif;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+main{
+	padding: 1.5rem;
+	width: 750px;
+	background-color: white;
+	margin: 0 auto;
+
+	
+}
+
+main i{
+	padding-right: 10px;
+}
+header{
+	padding: 1.5rem;
+	width: 750px;
+	background-color: #B8CB1F;
+	margin: 0 auto;
+}
+
+main article:first-child{
+	margin-bottom: 4rem;
+}
+
+article{
+	margin-bottom: 3rem;
+}
+
+nav a{
+	display: inline-block;
+	padding :1rem;
+	color: #2c4333;
+	font-weight: bold;
+}
+h1{
+	color:  B8CB1F;
+}
+
+
+main img{
+	float::left;
+	width: 200px;
+	margin-right: 0.75rem;
+}
+.button{
+	float: right;
+	text-decoration: none;
+	background-color: #B8CB1F;
+	color: white;
+	padding: 0.75rem;
+}
+#licence {
+    display: block;
+    text-align: center;
+    padding: 25px;
+}
+
+#licence img {
+    width: 50px;
+}
+
+.clearfix{clear: both;}
 
 

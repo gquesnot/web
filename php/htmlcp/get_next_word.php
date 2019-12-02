@@ -1,7 +1,7 @@
 	<?php
     include 'function.php';
 
-  $html_pos = $_POST['html'];
+  /*$html_pos = $_POST['html'];
   $css_pos= $_POST['css'];
   $dir = "site/";
     if ($dh = opendir($dir)) {
@@ -13,27 +13,52 @@
         }
 
         closedir($dh);
-    }
-
+    }*/
+/*
   foreach ($directory as $dir)
   {
   	if ($dir->get_type() == "f")
-  	{
+  	{*/
   		
-  		$src = file($dir->get_src());
-  		/*$src_spec= htmlspecialchars($src);*/
-  		foreach($src as $sr)
-  		{
-  			$src_spec[] = htmlspecialchars($sr);
-  		}
- 											
-  	}
-  }
-  $css = file("site/css/style.css");
-
+	$src = file_get_contents("site/index.html");
+  $css = file_get_contents("site/css/style.css");
   $tmp_css = fopen('tmp/css/style.css', 'a+');
   $tmp_html = fopen('tmp/index.html', 'a+');
+  
+  $res = new StdClass;
+  $tmp_html_length = strlen(file_get_contents('tmp/index.html'));
+  $tmp_css_length = strlen(file_get_contents('tmp/css/style.css'));
 
+  if ($tmp_css_length < strlen($css))
+  {
+    fwrite($tmp_css, $css[$tmp_css_length]);
+     
+  }
+ 
+  if ($tmp_html_length < strlen($src))
+  {
+     fwrite($tmp_html, $src[$tmp_html_length]);
+ 
+  }
+ fclose($tmp_css);
+  fclose($tmp_html);
+ 
+  $src=  file('tmp/index.html');
+
+  $css = file('tmp/css/style.css');
+
+
+  foreach($src as $sr)
+  {
+    $src_spec[] = htmlspecialchars($sr);
+  }
+
+  $res->html = $src;
+  $res->css = $css;
+  $res->html_spec = $src_spec;
+
+  echo json_encode($res);
+/*
   $i = 0;
   $j = 0;
   $k = 0;
@@ -54,16 +79,16 @@
 
   $res = new StdClass();
   $res->html_content = $set;
-  $res->html_spec_content = htmlspecialchars($set);
+/*  $res->html_spec_content = htmlspecialchars($set);*/
+  /*fwrite($tmp_html, $set);
   if ($i + 1  == strlen($src[$j]))
     { 
-      fwrite($tmp_html, $set.'<br>'); 
       $res->html_return = 1;
     }
   else
   {
     $res->html_return = 0;
-    fwrite($tmp_html, $set);
+    
     
   }
 
@@ -75,6 +100,9 @@
   {
     while ($m < strlen($css[$l]) && $set == false)
     {
+
+    for ($j = 0)
+
 
       if ($n == $css_pos)
         $set = $css[$l][$m];
@@ -88,19 +116,19 @@
   }
 
   $res->css_content = $set;
+  fwrite($tmp_css, $set); 
   if ($m +1 == strlen($css[$l]))
   {
-    fwrite($tmp_css, $set); 
+    
     $res->css_return = 1;
     
   }
   else
   {
     $res->css_return = 0;
+
   }
 
   $res->html_pos = $html_pos+ 1;
-  $res->css_pos = $css_pos+ 1;
-  fclose($tmp_css);
-  fclose($tmp_html);
-  echo json_encode($res);
+  $res->css_pos = $css_pos+ 1;*/
+

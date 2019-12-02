@@ -5,7 +5,7 @@ $(function(){
 
 	var intervalId;
 
-	$('#js').html('<object data="http://localhost/htmlcp/site/index.html" width="1280" height="1024"/>');
+	$('#js').load('http://localhost/htmlcp/tmp/index.html');
 
 	$('#data').data("html",0);
 	$('#data').data("css",0);
@@ -13,7 +13,7 @@ $(function(){
 
 	$('#start').click(function(){
 		$('#start').unbind('click');
-		intervalId = setInterval(start, 1000);
+		intervalId = setInterval(start, 50);
 
 	});
 
@@ -27,17 +27,29 @@ $(function(){
 		})
 		.done(function(json){
 			var res = JSON.parse(json);
-			console.log(res);
-			$('#data').data("html", res.html_pos);
-			$('#data').data('css', res.html_pos);
+			var html_spec = "";
+			var css = "";
 
+			res.html_spec.forEach( function(element) {
+				html_spec += element+'<br>';
+			});
+			res.css.forEach(function(element){
+				css += element+'<br>';
+			});
+			$('#js').load('http://localhost/htmlcp/tmp/index.html');
+			$('#html_page').html(html_spec);
+			$('#css').html(css);
 
 		});
 	}
 
 	function myStopFunction() {
   clearInterval(intervalId);
-  $('#start').click(start);
-} 
+  $('#js').load('http://localhost/htmlcp/tmp/index.html');
+  $('#start').click(function(){
+		$('#start').unbind('click');
+		intervalId = setInterval(start, 50);
 
+	});
+} 
 });
