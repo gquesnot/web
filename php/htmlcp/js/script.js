@@ -12,8 +12,9 @@ $(function(){
 
 
 	$('#start').click(function(){
+		$('#start').unbind('click');
+		intervalId = setInterval(start, 1000);
 
-		intervalId = setInterval(start, 100);
 	});
 
 	$('#pause').click(myStopFunction);
@@ -25,6 +26,11 @@ $(function(){
 			data: {html: $('#data').data("html"), css: $('#data').data("css")}
 		})
 		.done(function(json){
+			var res = JSON.parse(json);
+			console.log(res);
+			$('#data').data("html", res.html_pos);
+			$('#data').data('css', res.html_pos);
+
 
 		});
 	}

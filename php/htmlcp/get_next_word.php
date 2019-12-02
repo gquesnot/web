@@ -1,5 +1,5 @@
 	<?php
-
+    include 'function.php';
 
   $html_pos = $_POST['html'];
   $css_pos= $_POST['css'];
@@ -17,7 +17,6 @@
 
   foreach ($directory as $dir)
   {
-  	echo "src= ".$dir->get_src()." type= ".$dir->get_type()."<br>";
   	if ($dir->get_type() == "f")
   	{
   		
@@ -38,55 +37,70 @@
   $i = 0;
   $j = 0;
   $k = 0;
-  while($j < str_len($src) && $k != $html_pos)
+  $set = false;
+  while($j < count($src) && $set == false)
   {
-    while ($i < str_len($src[$j]) && $k != $html_pos)
+    while ($i < strlen($src[$j]) && $set == false)
     {
+      if ($k == $html_pos)
+        $set = $src[$j][$i];
+     
       $i++;
       $k++;
     }
     $i = 0;
     $j++;
   }
+
   $res = new StdClass();
-  if ($i + 1  == str_len($src[$j]))
+  $res->html_content = $set;
+  $res->html_spec_content = htmlspecialchars($set);
+  if ($i + 1  == strlen($src[$j]))
     { 
-      fwrite($tmp_html, $src[$j][$i].'\n'; 
-      $res->html_content = $src[$j][$i].'<br>';
+      fwrite($tmp_html, $set.'<br>'); 
+      $res->html_return = 1;
     }
   else
-     $res->html_content = $src[$j][$i].'<br>';
-   if ($i + 1  == str_len($src[$j]))
-    $res->html_spec_content = htmlspecialchars($src[$j][$i]).'<br>';
-  else
-     $res->html_spec_content = htmlspecialchars($src[$j][$i]).'<br>';
+  {
+    $res->html_return = 0;
+    fwrite($tmp_html, $set);
+    
+  }
 
   $l = 0;
   $m = 0;
   $n = 0;
-
-  while($l < str_len($css) && $n != $css_pos)
+  $set = false;
+  while($l < count($css) && $set == false)
   {
-    while ($m < str_len($css[$l]) && $n != $css_pos)
+    while ($m < strlen($css[$l]) && $set == false)
     {
+
+      if ($n == $css_pos)
+        $set = $css[$l][$m];
       $m++;
       $n++;
+     
     }
+ 
     $m = 0;
     $l++;
   }
 
+  $res->css_content = $set;
   if ($m +1 == strlen($css[$l]))
   {
-    fwrite($tmp_css, $css[$l][$m].'\n'; 
-    $res->css_content = $css[$l][$m].'<br>';
+    fwrite($tmp_css, $set); 
+    $res->css_return = 1;
+    
   }
   else
-    $res->css_content = $css[$l][$m];
+  {
+    $res->css_return = 0;
+  }
 
-  $res->html_pos;
-  $res->css_pos;
-
-
-fclose($tmp_css);
-fclose($tmp_html);
+  $res->html_pos = $html_pos+ 1;
+  $res->css_pos = $css_pos+ 1;
+  fclose($tmp_css);
+  fclose($tmp_html);
+  echo json_encode($res);
