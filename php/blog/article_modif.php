@@ -24,6 +24,10 @@
 				exit;
 			}
 			else{
+				$commentaires = $db->prepare('SELECT com_id, com_pseudo, com_texte, com_datetime FROM commentaire WHERE art_id = :id');
+				$commentaires->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+				$commentaires->execute();
+				$commentaires = $commentaires->fetchAll(PDO::FETCH_ASSOC);
 				include 'header.phtml';
 				include 'article_modif.phtml';
 			}

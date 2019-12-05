@@ -13,14 +13,14 @@ $(function() {
 		{
 			$('#title').css('border-color', 'green');
 		}
-		if ($('#content').val().length < 3)
+		if ($('.trumbowyg-editor').text() == "")
 		{
 			erreur++;
-			$('#content').css('border-color', 'red');
+			$('.trumbowyg-box').css('border-color', 'red');
 		}
 		else
 		{
-			$('#content').css('border-color', 'green');
+			$('.trumbowyg-box').css('border-color', 'green');
 		}
 
 		if ($('#category').val() == "")
@@ -78,13 +78,13 @@ $(function() {
 		else{
 			$('#pseudo').css('border-color', 'green');
 		}
-		if($('#commentary').val() == "")
+		if($('.trumbowyg-editor').text() == "")
 		{
-			$('#commentary').css('border-color', 'red');
+			$('.trumbowyg-box').css('border-color', 'red');
 			erreur++;
 		}
 		else{
-			$('#commentary').css('border-color', 'green');
+			$('.trumbowyg-box').css('border-color', 'green');
 		}
 		if (erreur == 0)
 		{
@@ -107,14 +107,14 @@ $(function() {
 		{
 			$('#title').css('border-color', 'green');
 		}
-		if ($('#content').val() == "")
+		if ($('.trumbowyg-editor').text() == "")
 		{
-			$('#content').css('border-color', 'red');
+			$('.trumbowyg-box').css('border-color', 'red');
 			erreur++;
 		}
 		else
 		{
-			$('#content').css('border-color', 'green');
+			$('.trumbowyg-box').css('border-color', 'green');
 		}
 		if (erreur == 0)
 		{
@@ -132,7 +132,7 @@ $(function() {
 			exit();
 		});
 
-	$('textarea').trumbowyg({
+	$('#content, #commentary').trumbowyg({
 		btns: [
         ['viewHTML'],
         ['undo', 'redo'], // Only supported in Blink browsers
@@ -145,6 +145,13 @@ $(function() {
         ['removeformat'],
         ['fullscreen']
     ]
+	});
+
+
+	$('#delete_com').click(function(event){
+		event.preventDefault();
+		document.location.href= "delete_com.php?id="+ $('#delete_com').data('id');
+
 	});
 
 

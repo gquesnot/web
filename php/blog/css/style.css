@@ -155,7 +155,7 @@ header{
 
 #admin_table{
 	width : 70%;
-	margin: 0 auto;
+	margin: 0 auto 5rem auto;
 	font-size: 1.25rem;
 }
 
@@ -165,7 +165,7 @@ header{
 
 #disconnect{
 	position: absolute;
-	top : 30%;
+	top : 20%;
 	left: 90%;
 	margin-right: 2rem;
 	padding: 1rem;
@@ -177,10 +177,13 @@ header{
 #new_article{
 	font-size: 1rem;
 	border-color: #2FA1A4;
-	color: #2FA1A4;
+	color: black;
 	width : 35%;
 	margin : 0 auto 3rem auto;
 	border-radius: 10px;
+}
+#new_article legend{
+	color: #2FA1A4;
 }
 
 #new_article label{
@@ -265,8 +268,8 @@ main{
 #new_article li:last-of-type input{
 	padding: 0.5rem 1rem;
 	border: none;
-	height : 33px;
-	width: 84.42px;
+	height : 35px;
+	width: 85px;
 	border-radius: 5px;
 	color: white;
 	font-size: 1rem;
@@ -279,7 +282,7 @@ main{
 	background-color: green;
 }
 
-#new_article li:last-of-type button, #art_modif li:last-of-type input:last-of-type
+#new_article li:last-of-type input:last-of-type, #art_modif li:last-of-type input:last-of-type
 {
 	background-color: red;
 }
@@ -309,4 +312,31 @@ main{
 	color: white;
 	font-size: 1rem;
 	margin-right: 1rem;
+ }
+
+ #comm{
+ 	width : 80%;
+ 	margin: 0 auto 5rem auto;
+
+ }
+
+ #comm th{
+ 	text-align: left;
+ }
+
+ .modif_com , .delete_com{
+ 	background-color: transparent;
+ 	border: none;
+ 	color : #2FA1A4;
+ }
+
+ #comm .fas{
+	font-size: 1.5rem;
+ }
+
+ #comm{
+	font-size: 1rem;
+ }
+ #comm th{
+ 	font-size: 1.25rem;
  }

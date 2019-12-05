@@ -2,12 +2,12 @@
     <main>
          <a id="menu_1" href="article.php"><i class="far fa-file-alt"></i> Article</a>
          <div id="art_art">
-         <h2><?= $article['art_titre'] ?></h2>
+         <h2><?= strip_tags($article['art_titre'], '<h1><h2><h3><h4><br><ul><li><style><strong><em><del><sub><p><hr><blockquote>'); ?></h2>
                 
             <?php if($article['art_img'] != ""): ?>
             <img id="art_img" src="<?=$article['art_img']?>" alt="<?=$article['art_titre']?>">
                         <?php endif; ?>
-            <p id="art_p"><?= $article['art_contenu'] ?></p>
+            <p id="art_p"><?= strip_tags($article['art_contenu'], '<h1><h2><h3><h4><br><ul><li><style><strong><em><del><sub><p><hr><blockquote>'); ?></p>
 
           <p>Rédigé par <?= htmlspecialchars($article['aut_prenom']) . " " . htmlspecialchars($article['aut_nom']) . " le " . $article['art_datetime']?></p>
            </div>
@@ -16,7 +16,7 @@
              <ul id="comment">
             <?php foreach($commentarys as $commentary): ?>
                 <li><p><i class="fas fa-comment"></i> Rédigé par <?=  htmlspecialchars($commentary['com_pseudo'])?></p></li>
-                 <li><p><?= $commentary['com_texte']?></p></li>
+                 <li><p><?= strip_tags($commentary['com_texte'], '<h1><h2><h3><h4><br><ul><li><style><strong><em><del><sub><p><hr><blockquote>');?></p></li>
          <?php endforeach; ?>
           </ul> 
       <?php endif;?>

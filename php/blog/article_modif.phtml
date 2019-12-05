@@ -16,6 +16,24 @@
             </ul>
         </fieldset>
         </form>
+
+        <table id="comm">
+            <thead><tr><th>pseudo</th><th>commentaire</th><th>date commentaire</th><th></th></tr></thead>
+            <tbody>
+                <?php foreach($commentaires as $commentaire): ?>
+
+                    <form method="post" action="modif_com.php?id=<?=$commentaire['com_id']?>">
+                    <tr>
+                        <td><input name="com_pseudo" value="<?= strip_tags($commentaire['com_pseudo']) ?>"></td>
+                        <td><textarea cols="50" rows="5" type="text" name="com_content" ><?= htmlspecialchars($commentaire['com_texte']) ?></textarea></td>
+                        <td><?= $commentaire['com_datetime'] ?></td>
+                        <td><button class="modif_com"><i class="fas fa-pen"></i></button><br><button class="delete_com" data-id="<?=$commentaire['com_id']?>"><i class="fas fa-times"></i></button></td>
+
+                    </tr>
+                    </form>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </main>
     <footer>
      

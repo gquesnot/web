@@ -3,9 +3,10 @@
 
 	function connectToDb()
 	{
-		
-   return (new PDO('mysql:host=localhost;dbname=blog1', "root", ""));
- 
+		$tmp = new PDO('mysql:host=localhost;dbname=blog1', "root", "troiswa");
+		$tmp->exec('SET NAMES UTF8');
+
+		return ($tmp);
 	}
 
 

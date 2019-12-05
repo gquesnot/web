@@ -31,5 +31,4 @@ if (document.getElementById('disconnect'))
 	 document.getElementById('disconnect').addEventListener("click", function(){location.href="disconnect.php"});
 
 }
-
 });

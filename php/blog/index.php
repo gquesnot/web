@@ -1,6 +1,7 @@
 <?php
-include 'function.php';
-	$articles = getAllArticle();
+include 'class.php';
+	$articles =  getAllArticles();
+	
 
 
 

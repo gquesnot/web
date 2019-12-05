@@ -5,13 +5,13 @@
 		
 		<?php foreach ($articles as $article):?>
 			<article id="art_index">
-							<h3><a id="art_title" href="article.php?id=<?=$article['art_id']?>"><i class="far fa-hand-point-right"></i> <?=htmlspecialchars($article['art_titre'])?></a></h3>	
-				<?php if(strlen($article['art_contenu']) > 75)
-					$tmp = substr($article['art_contenu'], 0, 75) . " [...]";
+							<h3><a id="art_title" href="article.php?id=<?=$article['art_id']?>"><i class="far fa-hand-point-right"></i> <?=htmlspecialchars($article->art_titre)?></a></h3>	
+				<?php if(strlen($article->art_contenu) > 75)
+					$tmp = substr($article->art_contenu, 0, 75) . " [...]";
 					else
-						$tmp = $article['art_contenu'];?>
+						$tmp = $article->art_contenu;?>
 				<p><?=htmlspecialchars($tmp)?></p>
-				<p>Rédigé par <?= htmlspecialchars($article['aut_prenom']) . " " . htmlspecialchars($article['aut_nom']) . " le " . $article['art_datetime'] ?></p>
+				<p>Rédigé par <?= htmlspecialchars($article->aut_prenom) . " " . htmlspecialchars($article->aut_nom) . " le " . $article->art_datetime ?></p>
 			</article>
 		<?php endforeach; ?>
     </main>
