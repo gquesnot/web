@@ -1,0 +1,27 @@
+
+
+
+<form method="POST" class="generic-form">
+	<h3>Création d'un compte client</h3>
+	<ul >
+		<?php if (isset($erreur)): ?>
+		<div class="error-message">
+			<h3>Il y a 1 erreur(s) dans le formulaire !</h3>
+			<p><?= $erreur ?></p>
+		</div>
+		<?php endif;?>
+		<fieldset>
+			<legend>Identité et coordonnées</legend>
+			<li>
+				<label for="Email">E-mail: </label>
+				<input name="Email" id="Email" type="text">
+			</li>
+			<li>
+				<label for="Password">Mot de passe: </label>
+				<input name="Password" id="Password" type="password">
+			</li>
+		</fieldset>
+		<button class="button button-primary" id="buttonloginSubmit">Connexion</button>
+		<button class="button button-cancel" id="buttonloginCancel">Annuler</button>
+	</ul>
+</form>
