@@ -10,7 +10,7 @@
     	<?php foreach($datas as $data): ?>
 			<tr>
 				<td>
-					<img src="<?= 'application/www/images/meals/'.$data->getPhoto() ?>" alt="<?= $data->getName() ?>">
+					<img src="<?= $wwwUrl.'/images/meals/'.$data->getPhoto() ?>" alt="<?= $data->getName() ?>">
 				</td>
 				<td>
 					<p><?= $data->getName() ?></p>

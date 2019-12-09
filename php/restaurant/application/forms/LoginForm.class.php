@@ -11,7 +11,7 @@ class LoginForm extends Form{
 	 public function login()
 	 {
 	 	$db = new Database();
-	 	$data = $db->queryOne('SELECT Password FROM USER WHERE Email = ?', array($this->getFormFields()['Email']));
+	 	$data = $db->queryOne('SELECT Password FROM user WHERE Email = ?', array($this->getFormFields()['Email']));
 	 	if ($data != false)
 	 	{
 	 			$hashedPassword = hash('sha256', $this->getFormFields()['Password']);

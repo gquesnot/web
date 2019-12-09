@@ -14,6 +14,9 @@ class RegisterForm extends Form{
 		$this->addFormField('Phone');
 		$this->addFormField('Email');
 		$this->addFormField('Password');
+		$this->addFormField('day');
+		$this->addFormField('month');
+		$this->addFormField('year');
 	}
 
 	public function register()
@@ -21,9 +24,15 @@ class RegisterForm extends Form{
 		$db = new Database();
 		$data = $db->queryOne('SELECT Id FROM user WHERE Email = ?', array($this->getFormFields()['Email']));
 		if ($data == false)
-		{
+		{	
+
+			if ($this->getFormFields()['day'] < 10)
+				$this->getFormFields()['day'] = '0'.$this->getFormFields()['day'];
+			if ($this->getFormFields()['month'] < 10)
+				$this->getFormFields()['month'] = '0'.$this->getFormFields()['month'];
+			$BirthDate = $this->getFormFields()['year'] . '-' . $this->getFormFields()['month'] . '-' . $this->getFormFields()['day'];
 			$hashedPassword = hash('sha256', $this->getFormFields()['Password']);
-			$data = $db->query('INSERT INTO user (LastName, FirstName, Address, City, ZipCode, Country, Phone, Email, Password, CreationTimestamp, BirthDate) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())',array($this->getFormFields()['LastName'], $this->getFormFields()['FirstName'], $this->getFormFields()['Address'], $this->getFormFields()['City'], $this->getFormFields()['ZipCode'], $this->getFormFields()['Country'], $this->getFormFields()['Phone'], $this->getFormFields()['Email'], $hashedPassword));
+			$data = $db->executeSql('INSERT INTO user (LastName, FirstName, Address, City, ZipCode, Country, Phone, Email, Password, CreationTimestamp, BirthDate) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)',array($this->getFormFields()['LastName'], $this->getFormFields()['FirstName'], $this->getFormFields()['Address'], $this->getFormFields()['City'], $this->getFormFields()['ZipCode'], $this->getFormFields()['Country'], $this->getFormFields()['Phone'], $this->getFormFields()['Email'], $hashedPassword, $BirthDate));
 			return true;
 		}
 		else{

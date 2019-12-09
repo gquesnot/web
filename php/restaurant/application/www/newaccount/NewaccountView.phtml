@@ -2,7 +2,7 @@
 <?php if (isset($data)){echo $data->getFormFields()['Email'];} ?>
 
 <form method="POST" class="generic-form">
-	<h3>Création d'un compte client</h3>
+	<h2>Création d'un compte client</h2>
 	<ul >
 		<?php if (isset($erreur)): ?>
 	<div class="error-message"><h3>Il y a 1 erreur(s) dans le formulaire !</h3><p><?= $erreur ?></p></div>
@@ -14,6 +14,25 @@
 		<input name="LastName" id="LastName" type="text" value="<?= $LastName ?>"></li>
 	<li><label for="FirstName">Prénom: </label>
 	<input name="FirstName" id="FirstName" type="text" value="<?= $FirstName ?>"></li>
+	<li>
+		<label for="day">Date de naissance: </label>
+			<select name="day" id="day">
+				<?php for($i = 1; $i < 32; $i++): ?>
+						<option value="<?= $i ?>"><?= $i ?></option>
+				<?php endfor; ?>
+			</select>/
+			<select name="month">
+				<?php for($i = 0;$i < 12; $i++): ?>
+						<option value="<?= $i +1 ?>"><?= $months[$i] ?></option>
+				<?php endfor; ?>
+			</select>/
+			<select name="year">
+				<?php for($i = 1940; $i < 2019; $i++): ?>
+						<option value="<?= $i ?>"><?= $i ?></option>
+				<?php endfor; ?>
+			</select>
+		
+	</li>
 	<li><label for="Address">Adresse: </label>
 	<textarea name="Address" id="Address"><?= $Address ?></textarea>
 	<li><label for="City">Ville: </label>

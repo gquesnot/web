@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // Save the project root directory as a global constant.
 define('ROOT_PATH', __DIR__);
 
@@ -30,6 +30,6 @@ require_once 'library/Http.class.php';
 require_once 'library/InterceptingFilter.interface.php';
 require_once 'application/classes/hydrate.trait.php';
 
-session_start();
+
 $microKernel = new MicroKernel();
 $microKernel->bootstrap()->run(new FrontController());

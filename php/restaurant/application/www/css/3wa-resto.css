@@ -132,6 +132,17 @@ html
     /* presentation */
     list-style-type: none;
 }
+
+
+.link-list{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.link-list>li>ul>li{
+    margin : 0 0.5rem 0 0.5rem;
+}
 .link-list li
 {
     display: inline-block;
@@ -230,7 +241,8 @@ html
     /* presentation */
     /*background-color: #D0FFFF;*/
     border-radius: 4px;
-    border: 2px solid #19e6d7;
+    border: 2px solid #19e6d7; 
+    width: 80%;
 }
 .meal-details:after
 {
@@ -242,6 +254,7 @@ html
 {
     float: left;
     margin-right: 1em;
+    width: 17%;
 }
 .meal-details p
 {
@@ -282,4 +295,9 @@ html
 #table-order th {
    border: 3px solid black;
    padding: 5px;
+}
+
+
+#QuantityOrdered{
+    width: 2em;
 }

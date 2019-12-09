@@ -18,7 +18,7 @@ class Database
 		);
 
 		$this->pdo->exec('SET NAMES UTF8');
-		$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		// $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     	/*$this->pdo->setAttribute(PDO::ATTR_E MULATE_PREPARES, false);*/
 	
     }

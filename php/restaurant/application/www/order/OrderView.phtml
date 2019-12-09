@@ -1,0 +1,67 @@
+<form method="POST" class="generic-form">
+	<h2>Passer une commande</h2>
+	<ul >
+		<?php if (isset($erreur)): ?>
+		<div class="error-message">
+			<h3>Il y a 1 erreur(s) dans le formulaire !</h3>
+			<p><?= $erreur ?></p>
+		</div>
+		<?php endif;?>
+		<fieldset>
+			<legend>Ajouter un article</legend>
+			<li>
+				<label for="meal">Nom: </label>
+				<select name="meal" id="meal">
+				<?php foreach($meals as $meal): ?>
+				<option value="<?= $meal->getId() ?>"><?= $meal->getName() ?></option>
+
+				<?php endforeach; ?>
+				</select>
+			</li>
+			<li id="mealInfo" class="meal-details no-left-label">
+				<img src="<?= $wwwUrl.'/images/meals/'.$meals[0]->getPhoto()  ?>" alt="<?= $meals[0]->getName() ?>">
+				<p><?= $meals[0]->getDescription() ?></p>
+				<p>Prix: <?= $meals[0]->getSalePrice() ?></p>
+				
+			</li>
+			<li>
+				<label for="QuantityOrdered">Quantité: </label>
+				<input name="QuantityOrdered" id="QuantityOrdered" type="text" >
+			</li>
+			<button class="button button-primary" id="addOrder">Ajouter</button>
+		</fieldset>
+		<fieldset>
+				<legend>Récapitulatif de la commande</legend>
+				<table class="generic-table">
+					<thead>
+						<tr>
+							<th>Quantité</th>
+							<th>Produit</th>
+							<th>Prix Unitaire</th>
+							<th>Prix Total</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php if(isset($commands)): ?>
+						<?php foreach($commands as $command): ?>
+						<tr>
+							<td><?= $command['QuantityOrdered'] ?></td>
+							<td><?= $command['Product'] ?></td>
+							<td><?= $command['PriceEach'] ?></td>
+							<td><?= $command['PriceEach'] * $command['Quantityordered'] ?></td>
+							<td><</td>	
+						</tr>
+						<?php endforeach; ?>
+					<?php endif; ?>
+					</tbody>
+				</table>
+
+		</fieldset>
+		
+	
+
+		<button class="button button-primary" id="buttonOrderSubmit">Valider la commande</button>
+		<button class="button button-cancel" id="buttonOrderCancel">Annuler</button>
+	</ul>
+</form>
