@@ -1,6 +1,6 @@
 <?php
 
-class OrderController
+class NeworderlineController
 {
     public function httpGetMethod(Http $http, array $queryFields)
     {
@@ -10,18 +10,12 @@ class OrderController
     	 * L'argument $http est un objet permettant de faire des redirections etc.
     	 * L'argument $queryFields contient l'équivalent de $_GET en PHP natif.
     	 */
-        $meals = Meal::getAllMeal();
-        $order = Order::getOneOrderByUserIdNotCompleted($_SESSION['Id']);
-        if ($order == false)
-        {
-            $order = Order::startNewOrder();
-            
 
-        }
-        $_SESSION['actualOrder'] = $order->getId();
-        return ['meals'=>$meals, 'order'=>$order];
-        
-        
+
+        OrderLine::deleteOrderLine($queryFields['id']);
+        $orderline = OrderLine::getAllOrderLineByOrderIdForJson($queryFields['Order_Id']);
+        $http->sendJsonResponse($orderline);
+       
     }
 
     public function httpPostMethod(Http $http, array $formFields)
@@ -32,5 +26,10 @@ class OrderController
     	 * L'argument $http est un objet permettant de faire des redirections etc.
     	 * L'argument $formFields contient l'équivalent de $_POST en PHP natif.
     	 */
+        $orderline = OrderLine::fillOrderLine($formFields['Order_Id'], $formFields['QuantityOrdered'], $formFields['Meal_Id'], $formFields['PriceEach']);
+
+        $orderline->insert();
+        $orderline = OrderLine::getAllOrderLineByOrderIdForJson($formFields['Order_Id']);
+        $http->sendJsonResponse($orderline);
     }
 }

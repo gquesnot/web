@@ -1,8 +1,9 @@
 <?php
 	
 	class Order{
-
+		use Hydrate;
 		private $id;
+		private $user_Id;
 		private $totalAmount;
 		private $taxRate;
 		private $taxAmount;
@@ -11,6 +12,13 @@
 		private $orderLine;
 
 		//Set
+
+		public function setUser_Id($id)
+		{
+			$this->user_Id = $id;
+		}
+
+
 		public function setId($id)
 		{
 			$this->id = $id;
@@ -37,7 +45,7 @@
 		}
 
 		//Get
-		public function getId($id)
+		public function getId()
 		{
 			return $this->id;
 		}
@@ -67,9 +75,22 @@
 			return $this->orderLine;
 		}
 
+		public function getUser_Id()
+		{
+			return $this->user_Id;
+		}
+
 		public function setOrderLine($id)
 		{
 			$this->orderLine = OrderLine::getAllOrderLineByOrderId($id);
+		}
+
+		public static function startNewOrder()
+		{
+			$db = new Database();
+			$db->executeSql('INSERT INTO `order` (User_Id, TaxRate, CreationTimestamp) VALUES(? , 20 , NOW())', array($_SESSION['Id']));
+			$order = Order::getOneOrderByUserIdNotCompleted($_SESSION['Id']);
+			return $order;
 		}
 
 		public static function getAllOrder()
@@ -102,15 +123,35 @@
 			return $array;
 		}
 
+		public static function getOneOrderByUserIdNotCompleted($user_id)
+		{
+			$db = new Database();
+			$data = $db->query('SELECT * FROM `order` WHERE User_Id = ? AND CompleteTimestamp IS NULL', array($user_id));
+			if ($data == false)
+				return false;
+			$tmp = new Order();
+			$tmp->hydrate($data[0]);
+			$tmp->setOrderLine($tmp->getId());
+			return $tmp;
+		}
+
 
 		public static function getOneOrderById($id)
 		{
 			$db = new Database();
-			$data = $db->query('SELECT * FROM order WHERE Id = ?', array($id));
+			$data = $db->query('SELECT * FROM `order` WHERE Id = ?', array($id));
 			$tmp = new Order();
-			$tmp->hydrate($data);
+			$tmp->hydrate($data[0]);
 			$tmp->setOrderLine($tmp->getId());
 			return $tmp;
-
 		}
+
+		public static function deleteOrder($id)
+		{
+			$db = new Database();
+			var_dump($id);
+			$db->executeSql('DELETE FROM `order` WHERE Id = ?', array($id));
+		}
+
+
 	}

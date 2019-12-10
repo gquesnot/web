@@ -1,6 +1,7 @@
 <?php
 	class OrderLine{
 	
+	use Hydrate;
 	private $id;
 	private $quantityOrdered;
 	private $meal_Id;
@@ -61,6 +62,21 @@
 	}
 
 
+
+	public function insert()
+	{
+		$db = new Database();
+		$tmp = $db->query('SELECT * FROM orderline WHERE Meal_Id = ? AND Order_Id = ?', array($this->getMeal_Id(), $this->getOrder_Id()));
+		if ($tmp == false)
+			$db->executeSql('INSERT INTO orderline (QuantityOrdered, Meal_Id, Order_Id, PriceEach) VALUES (? ,? ,? ,?)', array($this->getQuantityOrdered(), $this->getMeal_Id(), $this->getOrder_Id(), $this->getPriceEach()));
+		else
+		{
+			$quantity = $this->getQuantityOrdered() + $tmp[0]['QuantityOrdered'];
+			$db->executeSql('UPDATE orderline SET QuantityOrdered = ? WHERE Meal_Id = ?', array($quantity,$this->getMeal_Id()));
+		}
+	}
+
+
 	public static function getAllOrderLine()
 	{
 		$db = new Database();
@@ -79,7 +95,7 @@
 	public static function getAllOrderLineByOrderId($id)
 	{
 		$db = new Database();
-		$datas = $db->query('SELECT * FROM orderline WHERE = Order_Id = ?', array($id));
+		$datas = $db->query('SELECT * FROM orderline WHERE Order_Id = ?', array($id));
 		$array = array();
 		foreach($datas as $data)
 		{
@@ -90,5 +106,32 @@
 		}
 		return $array;
 	}
+
+
+
+	public static function getAllOrderLineByOrderIdForJson($id)
+	{
+		$db = new Database();
+		$datas = $db->query('SELECT *, orderline.Id as orderline_id FROM orderline  INNER JOIN meal on orderline.Meal_Id = meal.Id WHERE Order_Id = ?', array($id));
+		return $datas;
+	}
+
+	public static function fillOrderLine($orderId, $quantity, $mealId, $priceEach)
+	{
+		$tmp = new OrderLine();
+		$tmp->setQuantityOrdered($quantity);
+		$tmp->setMeal_Id($mealId);
+		$tmp->setOrder_Id($orderId);
+		$tmp->setPriceEach($priceEach);
+		return $tmp;
+	}
+
+	public static function deleteOrderLine($orderlineId)
+	{
+		$db = new Database();
+		$db->executeSql('DELETE FROM orderline WHERE Id = ?', array($orderlineId));
+
+	}
+	
 
 }

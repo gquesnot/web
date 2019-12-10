@@ -1,6 +1,6 @@
 <?php
 
-class OrderController
+class RemoveorderController
 {
     public function httpGetMethod(Http $http, array $queryFields)
     {
@@ -10,16 +10,16 @@ class OrderController
     	 * L'argument $http est un objet permettant de faire des redirections etc.
     	 * L'argument $queryFields contient l'équivalent de $_GET en PHP natif.
     	 */
-        $meals = Meal::getAllMeal();
-        $order = Order::getOneOrderByUserIdNotCompleted($_SESSION['Id']);
-        if ($order == false)
+        $order = Order::getOneOrderById($queryFields['id']);
+        var_dump($order);
+        $orderLines = $order->getOrderLine();
+        foreach($orderLines as $orderLine)
         {
-            $order = Order::startNewOrder();
-            
-
+            OrderLine::deleteOrderLine($orderLine->getId());
         }
-        $_SESSION['actualOrder'] = $order->getId();
-        return ['meals'=>$meals, 'order'=>$order];
+        Order::deleteOrder($queryFields['id']);
+        var_dump($order);        
+        $http->redirectTo('../');
         
         
     }
@@ -32,5 +32,7 @@ class OrderController
     	 * L'argument $http est un objet permettant de faire des redirections etc.
     	 * L'argument $formFields contient l'équivalent de $_POST en PHP natif.
     	 */
+
+        
     }
 }

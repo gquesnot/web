@@ -1,3 +1,4 @@
+
 <form method="POST" class="generic-form">
 	<h2>Passer une commande</h2>
 	<ul >
@@ -18,7 +19,7 @@
 				<?php endforeach; ?>
 				</select>
 			</li>
-			<li id="mealInfo" class="meal-details no-left-label">
+			<li id="mealInfo" class="meal-details no-left-label" data-id="<?= $meals[0]->getId() ?>" data-priceEach="<?= $meals[0]->getSalePrice() ?>">
 				<img src="<?= $wwwUrl.'/images/meals/'.$meals[0]->getPhoto()  ?>" alt="<?= $meals[0]->getName() ?>">
 				<p><?= $meals[0]->getDescription() ?></p>
 				<p>Prix: <?= $meals[0]->getSalePrice() ?></p>
@@ -32,7 +33,7 @@
 		</fieldset>
 		<fieldset>
 				<legend>Récapitulatif de la commande</legend>
-				<table class="generic-table">
+				<table id="orderInfo" class="generic-table" data-orderId="<?=$order->getId()?>">
 					<thead>
 						<tr>
 							<th>Quantité</th>
@@ -42,15 +43,18 @@
 							<th></th>
 						</tr>
 					</thead>
+
 					<tbody>
-						<?php if(isset($commands)): ?>
-						<?php foreach($commands as $command): ?>
+						<?php if(isset($order) && !empty($order->getOrderLine())): ?>
+						
+						<?php 	$ordersline = $order->getOrderLine();
+								foreach($ordersline as $orderline): ?>
 						<tr>
-							<td><?= $command['QuantityOrdered'] ?></td>
-							<td><?= $command['Product'] ?></td>
-							<td><?= $command['PriceEach'] ?></td>
-							<td><?= $command['PriceEach'] * $command['Quantityordered'] ?></td>
-							<td><</td>	
+							<td><?= $orderline->getQuantityOrdered() ?></td>
+							<td><?= $orderline->getMeal()->getName() ?></td>
+							<td><?= $orderline->getPriceEach() ?></td>
+							<td><?= $orderline->getPriceEach() * $orderline->getQuantityOrdered() ?></td>
+							<td><i data-id="<?= $orderline->getId()?>" class="fas fa-trash-alt"></i></td>	
 						</tr>
 						<?php endforeach; ?>
 					<?php endif; ?>
@@ -59,9 +63,8 @@
 
 		</fieldset>
 		
-	
-
-		<button class="button button-primary" id="buttonOrderSubmit">Valider la commande</button>
-		<button class="button button-cancel" id="buttonOrderCancel">Annuler</button>
-	</ul>
+		</ul>
 </form>
+
+		<a href="<?= $requestUrl .'/payment/'?>"><button class="button button-primary" id="buttonOrderSubmit">Valider la commande</button></a>
+		<button class="button button-cancel" id="buttonOrderCancel">Annuler</button>

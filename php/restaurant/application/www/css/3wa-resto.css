@@ -301,3 +301,11 @@ html
 #QuantityOrdered{
     width: 2em;
 }
+
+.fas.fa-trash-alt{
+    padding: 0.75rem;
+    background-color: red;
+    font-size: 0.75rem;
+    color: white;
+    border-radius: 5px;
+}
