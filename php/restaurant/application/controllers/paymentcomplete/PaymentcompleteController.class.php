@@ -1,6 +1,6 @@
 <?php
 
-class RemoveorderController
+class PaymentcompleteController
 {
     public function httpGetMethod(Http $http, array $queryFields)
     {
@@ -9,19 +9,7 @@ class RemoveorderController
     	 *
     	 * L'argument $http est un objet permettant de faire des redirections etc.
     	 * L'argument $queryFields contient l'équivalent de $_GET en PHP natif.
-    	 */
-        $order = Order::getOneOrderById($queryFields['id']);
-        var_dump($order);
-        $orderLines = $order->getOrderLine();
-        foreach($orderLines as $orderLine)
-        {
-            OrderLine::deleteOrderLine($orderLine->getId());
-        }
-        Order::deleteOrder($queryFields['id']);
-        if (isset($_SESSION['OrderNotCompleted']))
-            unset($_SESSION['OrderNotCompleted']);
-        var_dump($order);        
-        $http->redirectTo('../');
+        */
         
         
     }
@@ -34,7 +22,7 @@ class RemoveorderController
     	 * L'argument $http est un objet permettant de faire des redirections etc.
     	 * L'argument $formFields contient l'équivalent de $_POST en PHP natif.
     	 */
+ 
 
-        
     }
 }

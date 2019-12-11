@@ -1,0 +1,63 @@
+<!-- Message de notification -->
+
+<!-- Code HTML à écrire -->
+
+
+<!-- Liste des aliments -->
+<h2>Payer la commande</h2>
+<ul class="invoice">
+	<p><?= $_SESSION['FirstName'] . ' ' .$_SESSION['LastName'] ?></p>
+	<p><?= $_SESSION['Address'] ?></p>
+	<p><?= $_SESSION['ZipCode'] . ' '?> <span class="city"><?= $_SESSION['City'] ?>
+	</span></p>
+</ul>
+<table class="generic-table meal-list" id="orderInfo", data-orderId="<?= $orders->getId() ?>">
+	<caption>Récapitulatif de la commande</caption>
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Quantité</th>
+			<th>Prix Unitaire</th>
+			<th>Prix Total</th>
+		</tr>
+	</thead>
+	<tfoot id="footpayment">
+		<tr>
+			<td></td>
+			<td></td>
+			<td>Total HT</td>
+			<td><?= $orders->getTotalAmount() ?>€</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td>TVA (20%)</td>
+			<td><?= $orders->getTaxAmount()?>€</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td>Total TTC</td>
+			<td><?= $orders->getTotalAmount() + $orders->getTaxAmount() ?>€</td>
+		</tr>
+
+	</tfoot>
+	<tbody>
+		<?php foreach($orderLines as $orderLine): ?>
+			<tr>
+				<td><img src="<?= $wwwUrl .'/images/meals/' . $orderLine->getMeal()->getPhoto()?>"><?= $orderLine->getMeal()->getName()?></td>
+				<td><?= $orderLine->getQuantityordered()?></td>
+				<td><?= $orderLine->getPriceEach() ?></td>
+				<td><?= $orderLine->getQuantityordered() * $orderLine->getPriceEach() ?></td>
+			</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>
+<p id="dateCommand">Commandé le <?= $orders->getCompleteTimestamp() ?></p>
+<hr>
+<p id="thank">Merci de bien vouloir procéder au payment de la commande.</p>
+<form method="POST">
+<button class="button button-primary" id="buttonPaySubmit">Payer</button>
+<button class="button button-cancel" id="buttonPayCancel">Annuler</button>
+</form>
+

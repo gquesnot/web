@@ -1,6 +1,6 @@
 <?php
 
-class RemoveorderController
+class PaymentController
 {
     public function httpGetMethod(Http $http, array $queryFields)
     {
@@ -10,18 +10,17 @@ class RemoveorderController
     	 * L'argument $http est un objet permettant de faire des redirections etc.
     	 * L'argument $queryFields contient l'équivalent de $_GET en PHP natif.
     	 */
-        $order = Order::getOneOrderById($queryFields['id']);
-        var_dump($order);
-        $orderLines = $order->getOrderLine();
-        foreach($orderLines as $orderLine)
+        if (!isset($_SESSION['OrderNotCompleted']))
         {
-            OrderLine::deleteOrderLine($orderLine->getId());
+            $orders = Order::getOneOrderByUserIdNotCompleted($_SESSION['Id']);
+            $_SESSION['OrderNotCompleted'] = $orders->getId();
+            $orders->setTotalAmount($orders->getOrderLine());
+            $orders->setTaxAmount($orders->getTotalAmount());
+            $orders->update();
         }
-        Order::deleteOrder($queryFields['id']);
-        if (isset($_SESSION['OrderNotCompleted']))
-            unset($_SESSION['OrderNotCompleted']);
-        var_dump($order);        
-        $http->redirectTo('../');
+        $orders = Order::getOneOrderById($_SESSION['OrderNotCompleted']);
+        return ['orders'=>$orders, 'orderLines'=>$orders->getOrderLine()];
+       
         
         
     }
@@ -34,7 +33,8 @@ class RemoveorderController
     	 * L'argument $http est un objet permettant de faire des redirections etc.
     	 * L'argument $formFields contient l'équivalent de $_POST en PHP natif.
     	 */
+        unset($_SESSION['OrderNotCompleted']);
+        $http->redirectTo('/paymentcomplete');
 
-        
     }
 }

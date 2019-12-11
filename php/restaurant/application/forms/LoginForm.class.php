@@ -19,6 +19,7 @@ class LoginForm extends Form{
 	 		{
 	 			
 	 			$user = User::getUserByMail($this->getFormFields()['Email']);
+	 			$activeOrder = Order::getOneOrderByUserIdNotCompleted($user->getId());
 	 			$_SESSION['Id'] = $user->getId();
 	 			$_SESSION['FirstName'] = $user->getFirstName();
 	 			$_SESSION['LastName'] = $user->getLastName();

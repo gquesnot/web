@@ -83,7 +83,7 @@ $(function(){
 	$('tr td:last-of-type i').on("click", removeOrderLine);
 
 
-	$('#buttonOrderCancel').on("click", function(e){
+	$('#buttonOrderCancel, #buttonPayCancel').on("click", function(e){
 		e.preventDefault();
 		
 		window.location.href="../removeorder?id="+$('#orderInfo').attr('data-orderId');

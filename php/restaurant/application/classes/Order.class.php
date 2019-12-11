@@ -23,9 +23,22 @@
 		{
 			$this->id = $id;
 		}
-		public function setTotalAmount($data)
+		public function setTotalAmount($orderLines)
 		{
-			$this->totalAmount = $data;
+
+			if (gettype($orderLines) == 'array')
+			{
+			$tmp = 0;
+			if ($orderLines == null)
+				return null;
+			foreach($orderLines as $orderLine)
+			{
+				$tmp += $orderLine->getQuantityOrdered() * $orderLine->getPriceEach();
+			}
+			$this->totalAmount = $tmp;
+			}
+			else
+				$this->totalAmount = $orderLines;
 		}
 		public function setTaxRate($data)
 		{
@@ -33,7 +46,7 @@
 		}
 		public function setTaxAmount($data)
 		{
-			$this->taxAmount = $data;
+			$this->taxAmount = $data * ($this->getTaxRate()/100);
 		}
 		public function setCreationTimestamp($data)
 		{
@@ -126,11 +139,11 @@
 		public static function getOneOrderByUserIdNotCompleted($user_id)
 		{
 			$db = new Database();
-			$data = $db->query('SELECT * FROM `order` WHERE User_Id = ? AND CompleteTimestamp IS NULL', array($user_id));
+			$data = $db->queryOne('SELECT * FROM `order` WHERE User_Id = ? AND CompleteTimestamp IS NULL', array($user_id));
 			if ($data == false)
 				return false;
 			$tmp = new Order();
-			$tmp->hydrate($data[0]);
+			$tmp->hydrate($data);
 			$tmp->setOrderLine($tmp->getId());
 			return $tmp;
 		}
@@ -139,9 +152,11 @@
 		public static function getOneOrderById($id)
 		{
 			$db = new Database();
-			$data = $db->query('SELECT * FROM `order` WHERE Id = ?', array($id));
+			$data = $db->queryOne('SELECT * FROM `order` WHERE Id = ?', array($id));
+			if ($data == false)
+				return false;
 			$tmp = new Order();
-			$tmp->hydrate($data[0]);
+			$tmp->hydrate($data);
 			$tmp->setOrderLine($tmp->getId());
 			return $tmp;
 		}
@@ -151,6 +166,13 @@
 			$db = new Database();
 			var_dump($id);
 			$db->executeSql('DELETE FROM `order` WHERE Id = ?', array($id));
+		}
+
+
+		public function update()
+		{
+			$db=  new Database();
+			$query = $db->executeSql('UPDATE `order` SET TotalAmount = ?, TaxAmount = ?, CompleteTimestamp = NOW()  WHERE Id= ?', array($this->getTotalAmount(), $this->getTaxAmount(),$this->getId()));
 		}
 
 

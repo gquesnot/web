@@ -309,3 +309,15 @@ html
     color: white;
     border-radius: 5px;
 }
+
+#footpayment tr td {
+    text-align: left;
+}
+
+#dateCommand{
+    text-align: center;
+}
+
+#thank{
+    font-size: 22px;
+}
