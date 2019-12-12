@@ -29,6 +29,7 @@ require_once 'library/MicroKernel.class.php';
 require_once 'library/Http.class.php';
 require_once 'library/InterceptingFilter.interface.php';
 require_once 'application/classes/hydrate.trait.php';
+require_once 'application/stripe-php/init.php';
 
 
 $microKernel = new MicroKernel();

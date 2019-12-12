@@ -2,14 +2,14 @@
 <?php if (isset($data)){echo $data->getFormFields()['Email'];} ?>
 
 <form method="POST" class="generic-form">
-	<h2>Création d'un compte client</h2>
+	<h2><i class="fas fa-user"></i> Création d'un compte client</h2>
 	<ul >
 		<?php if (isset($erreur)): ?>
 	<div class="error-message"><h3>Il y a 1 erreur(s) dans le formulaire !</h3><p><?= $erreur ?></p></div>
 <?php endif;?>
 	<li><ul>
 		<fieldset>
-			<legend>Identité et coordonnées</legend>
+			<legend><i class="fas fa-book"></i> Identité et coordonnées</legend>
 		<li><label for="LastName">Nom: </label>
 		<input name="LastName" id="LastName" type="text" value="<?= $LastName ?>"></li>
 	<li><label for="FirstName">Prénom: </label>
@@ -48,7 +48,7 @@
 	<li>
 		<ul>
 	<fieldset>
-		<legend>Inforamtions d'authentification</legend>
+		<legend><i class="fas fa-lock"></i> Inforamtions d'authentification</legend>
 	<li><label for="Email">E-mail: </label>
 	<input name="Email" id="Email" type="text" value="<?= $Email ?>"></li>
 	<li><label for="Password">Mot de passe: </label>

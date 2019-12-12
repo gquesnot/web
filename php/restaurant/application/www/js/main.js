@@ -89,14 +89,42 @@ $(function(){
 		window.location.href="../removeorder?id="+$('#orderInfo').attr('data-orderId');
 	});
 	
-	// $('#buttonOrderSubmit').click(function(e){
-	// 	e.preventDefault():
-	// 	window.location.href=""
-	// });	
+	$('#buttonNewAccountSubmit, #buttonLoginSubmit').click(function(e){
+		e.preventDefault();
+		var erreur = 0 ;
+		$('input, textarea').each(function(){
+			if ($(this).val() == '')
+			{
+				$(this).css('border', '1px solid red');
+				erreur++;
+			}
+			else
+			{
+				$(this).css('border', '1px solid green');
+			}
+		});
+		if (erreur == 0)
+			$('.generic-form').submit();
+		else
+			return ;
+	});
+
+
+
+
 });
 	
-
-	
+// var stripe = Stripe('pk_test_nqg3grYa8HWO9LxQ6AYfBH0C00pyd2wAnH');
+// stripe.redirectToCheckout({
+//   // Make the id field from the Checkout Session creation API response
+//   // available to this file, so you can provide it as parameter here
+//   // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+//   sessionId: 'cs_test_MnCK5E6d4tG4WsgYXUGheCMGVoZWHVVAXmkgLTIJkolHx1zdxkS6j0ic'
+// }).then(function (result) {
+//   // If `redirectToCheckout` fails due to a browser or network
+//   // error, display the localized error message to your customer
+//   // using `result.error.message`.
+// });
 
 function removeOrderLine()
 {

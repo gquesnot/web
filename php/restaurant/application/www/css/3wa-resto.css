@@ -321,3 +321,13 @@ html
 #thank{
     font-size: 22px;
 }
+
+#thankto{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+#homer{
+    display: block;
+    margin: 0 auto;
+}

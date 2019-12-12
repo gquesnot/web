@@ -4,3 +4,53 @@
 
 
 <!-- Liste des aliments -->
+
+<h2><i class="fas fa-utensils"></i> Réservation d'une table</h2>
+<form method="POST" class="generic-form">
+	<fieldset>
+		<legend>Informations</legend>
+		<ul>
+			<li>
+				<label for="day">Date de réservation</label>
+				<select name="day" id="day">
+					<?php for($i = 1; $i <= 31; $i++): ?>
+						<option value="<?= $i ?>"><?= $i ?></option>	
+					<?php  endfor; ?>
+				</select>/
+				<select name="month" id="month">
+					<?php for($i = 0;$i < 12; $i++): ?>
+						<option value="<?= $i ?>"><?= $months[$i] ?></option>
+					<?php endfor; ?>
+				</select>/
+				<select name="year" id="year">
+					<?php for($i = 2019; $i < 2025; $i++): ?>
+						<option value="<?= $i ?>"><?= $i ?></option>
+					<?php endfor; ?>
+				</select>à
+				<select name="hour" id="hour">
+					<?php for($i = 0; $i <= 23; $i++): ?>
+						<option value="<?= $i ?>"><?= sprintf('%02d',$i)?></option>	
+					<?php  endfor; ?>
+				</select>:
+				<select name="min" id="min">
+					<?php for($i = 0; $i <= 45; $i += 15): ?>
+						<option value="<?= $i ?>"><?=sprintf('%02d',$i)?></option>	
+					<?php  endfor; ?>
+				</select>
+				
+			</li>
+			<li>
+				<label for="nbCouverts">Nombre de couverts: </label>
+				<select name="nbCouverts" id="nbCouverts">
+					<?php for($i = 1; $i <= 12; $i++): ?>
+						<option value="<?= $i ?>"><?= $i?></option>	
+					<?php  endfor; ?>
+				</select>
+			</li>
+		</ul>
+
+
+	</fieldset>
+	<button class="button button-primary">Réserver</button>
+	<button class="button button-cancel">Annuler</button>
+</form>
