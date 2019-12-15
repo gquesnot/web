@@ -1,0 +1,458 @@
+@font-face {
+    font-family: 'dattebayo';
+    src: url('../fonts/dattebayo.eot');
+    src: url('../fonts/dattebayo.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/dattebayo.woff2') format('woff2'),
+        url('../fonts/dattebayo.woff') format('woff'),
+        url('../fonts/dattebayo.ttf') format('truetype'),
+        url('../fonts/dattebayo.svg#dattebayo') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+body{font-size: 62.5%; font-size: 1.6rem;}
+
+
+body{
+	font-family: sans-serif;
+	background-color:  black;
+	color : white;
+
+}
+
+h1, h2{
+	font-size: 1.5rem!important;
+	font-weight: normal;
+}
+
+
+h1{
+	text-align: center;
+	border-bottom: 1px solid white;
+	padding-bottom: 0.5rem;
+	width: 95%;
+	margin: 1rem auto!important;
+	line-height: 1.5;
+	font-weight: bold;
+}
+
+
+
+h2{
+	font-weight: bold;
+}
+
+h3{
+	font-size: 2.5rem!important;
+	font-weight: normal;
+
+	text-align: center;
+
+}
+
+h4{
+	margin : 1rem 0;
+	font-size: 1.5rem!important;
+	text-align: center;
+	
+}
+
+ul{
+
+	list-style: none;
+	padding: 0;
+}
+
+li{
+	list-style: none;
+}
+
+a{
+	text-decoration: none;
+	color: white;
+	font-size: 2.75rem;
+}
+
+main{
+	width: 85%;
+	margin: 0 auto;
+}
+
+
+header nav{
+	width: 90%;
+	margin : 0 auto;
+}
+
+header nav ul{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+header nav li{
+	padding-bottom: 0.75rem;
+	margin-top: 2rem;
+
+}
+
+header nav li:hover a{
+	font-size: 3rem;
+	transition: 0.3s;
+}
+
+
+header nav ul a{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 300;
+}
+
+header nav{
+	border-bottom: 2px solid grey
+}
+
+#index{
+	font-size:  3rem;
+	margin : 0 auto 2rem auto;
+	display: block;
+	text-align: center;
+	/* margin: 0 0 2rem 0; */
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 
+
+}
+
+#index:hover
+{
+	font-size: 3.5rem;
+	transition: 0.3s;
+}
+
+#index {
+	font-family: 'dattebayo';
+	font-size: 6rem;
+}
+
+
+#title{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 200;
+	font-size: 3.5rem;
+	text-transform: uppercase;
+}
+
+#icon{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	margin: 0.5rem 0 0 0;
+
+}
+
+#icon li{
+	margin: 0.5rem 1.5rem 0 0;
+}
+
+#icon .fab{
+	font-size: 5rem;
+}
+
+.fab.fa-facebook-square{
+
+     color: #3b5998;
+  
+  background-size: 55%;
+  background-position: 70% 0;
+  background-repeat: no-repeat;
+  background-color: black;
+}
+
+
+.fab.fa-instagram {
+  color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+main p{
+	font-size: 1.5rem;
+}
+
+main{
+
+
+
+
+}
+
+
+#description{
+	width: 90%;
+	margin: 0 auto;
+}
+
+#description article {
+	/* margin-right: 1rem; */
+	text-align: center;
+	margin-top: 2.5rem;
+	font-weight: bold;
+
+
+}
+
+#event ul {
+	margin-top: 2.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 3rem;
+
+}
+
+
+#event li{
+	width: 100%;
+	background-color: #262626;
+	border: none;
+	margin-top: 2rem;
+}
+
+#event article{
+	padding : 2rem;
+	width: 80%;
+	margin:  0 auto;
+}
+
+#event img {
+	height: 200px;
+}
+
+
+
+#gallery{
+	display: flex;
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 5rem;
+
+}
+
+#gallery >li:first-child{
+	width: 20%;
+	background-color:  	#303030;
+	margin-right: 5rem;
+
+}
+
+#gallery> li:last-child{
+	width: 80%;
+	background-color: #181818;
+}
+
+#slid{
+	display :flex;
+
+}
+
+#chev_l, #chev_r{
+	width : 5%;
+		align-self: center;
+	justify-self: center;
+	margin-left: 5rem;
+	
+}
+
+#slider{
+	width : 70%;
+}
+
+#slid >li:last-child{
+	width: 20%;
+}
+
+#menu_right{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+#menu_right li{
+	height: 16%;
+	margin: 2rem 2rem 2rem 0 ;
+
+	
+}
+
+#gallery img{
+	width : 100%;
+}
+
+#slider img{
+	height : 100%;
+}
+
+
+
+#menu_left {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		margin-top: 3rem;
+		margin-bottom: 3rem;
+		
+}
+
+#menu_left li{
+
+	width: 50%;
+	margin-top: 2rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+
+#menu_left p {
+	writing-mode: vertical-rl;
+text-orientation: upright;
+cursor: pointer;
+	text-align: center;
+	padding: 5rem;
+	font-size: 4rem;
+
+}
+
+#menu_left p:hover{
+
+	background-color: black;
+}
+
+
+
+
+
+.fas.fa-chevron-right, .fas.fa-chevron-left{
+	color: white;
+	font-size: 8rem;
+	cursor: pointer;
+	
+}
+
+
+#loginTable input, #registerTable input{
+	width: 250px;
+	height: 25px;
+	color: black;
+	font-size: 2rem;
+}
+#loginTable label, #registerTable label{
+	color: white;
+	font-size: 2rem;
+	
+}
+
+#loginTable td, #registerTable td{
+	padding-top: 2rem;
+
+}
+
+#loginTable, #registerTable{
+	width: 80%;
+	margin: 0 auto;
+
+	
+}
+
+
+
+#loginTable #loginOk, #registerTable #registerOk, #loginTable #loginCancel, #registerTable #registerCancel{
+	margin: 1rem 0;
+	color: black;
+	background-color: white;
+	font-size: 1.5rem;
+	border-radius: 5px;
+
+
+}
+
+
+#loginOk{
+
+}
+
+
+#loginCancel{
+
+}
+
+
+#addImg{
+	width: 50%;
+	margin: 0 auto;
+
+}
+
+#addImg tr td:last-of-type input{
+	/* width: 70%; */
+}
+
+#addImg label{
+	vertical-align: top;
+}
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 768px)
+{
+
+}
+
+
+@media screen and (min-width: 1024px)
+{
+	header nav ul{
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+}
+
+#description{
+	width: 50%;
+	margin: 0 auto;
+}
+#event ul{
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: space-around;
+}
+
+#event li{
+	width: 48%;
+	background-color: #262626;
+	border: none;
+}
+
+}
+
+
+#buttonAdmin, #buttonDisconnect{
+	width: 250px;
+	font-size: 2rem;
+}
+
+
+

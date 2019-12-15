@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>inspired by nature</title>
+	
+	<script src="https://kit.fontawesome.com/54f937d5ae.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  	<script src="js/script.js"></script>
+	
+</head>
+<body>
+	<header>
+		<ul id="icon">
+			<li><a href="fbacc"><i class="fab fa-facebook-square"></i>
+</a></li>
+			<li><a href="instacc"><i class="fab fa-instagram"></i></a></li>
+		</ul>
+		
+		<nav>
+		<a id="index" href="index.html">Inspired By Nature <span id="title">art</span></a>
+		<ul>
+		<li><a href="index.html">Home</a></li>
+		<li><a href="painting_gallery.html">Painting</a></li>
+		<li><a href="photography_gallery.html">Photography</a></li>
+		<li><a href="about_me.html">About me</a></li>
+		<li><a href="exhibitions_events.html">Exhibitions and Events</a></li>
+		<li><a href="contact.html">Contact</a></li>
+		</ul>
+	</nav>
+	<?php if (isset($_SESSION['id'])): ?>
+		<a href="admin.php"><button id="buttonAdmin">admin</button></a>
+		<a href="disconnect.php"><button id="buttonDisconnect">Se deconnecter</button></a>
+	<?php endif; ?>
+	</header>

@@ -1,0 +1,54 @@
+
+
+
+
+<form method="POST" id="addImg" enctype="multipart/form-data">
+<fieldset>
+	<legend>Ajouter une Photo/peinture</legend>
+	<table>
+		<tr>
+			<td><label for="type">type :</label></td>
+			<td><select name="type" >
+			<option value="0">Choisir le type de l'image</option>
+			<?php foreach($types as $type): ?>
+			
+			<option value="<?= $type->getName() ?>"><?= $type->getName() ?></option>
+
+			<?php endforeach; ?>
+			</select>
+			</td>
+			</tr>
+			<td><label for="categorie">categorie :</label></td>
+			<td><select name="categorie" >
+			<option value="0">Choisir le style</option>
+			<?php foreach($categories as $categorie): ?>
+			
+			<option value="<?= $categorie->getName() ?>"><?= $categorie->getName() ?></option>
+
+			<?php endforeach; ?>
+			</select>
+			</td>
+		<tr>
+			
+		</tr>
+		<tr>
+			<td><label for="img">Choisir une image :</label></td>
+			<td><input type="file" id="img" name="img"></td>
+		</tr>
+		<tr>
+			<td><label for="nom">Nom :</label></td>
+			<td><input id="nom" name="nom" type="text" size="49"></td>
+		</tr>
+		<tr>
+			<td><label for="description">Description :</label></td>
+			<td><textarea name="description" id="description" cols="100" rows="3"></textarea></td>
+		</tr>
+		<tr><td><a href=""><button>Valider</button></a></td></tr>
+	</table>
+
+
+	
+
+</fieldset>
+</form>
+
