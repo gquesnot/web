@@ -91,7 +91,7 @@ h2
 
 html
 {
-    background: url('../images/index.jpg') repeat;
+    /*background: url('../images/index.jpg') repeat;*/
     overflow-y: scroll;
 }
 

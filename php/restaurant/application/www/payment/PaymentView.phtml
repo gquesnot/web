@@ -53,11 +53,11 @@
 		<?php endforeach; ?>
 	</tbody>
 </table>
-<p id="dateCommand">Commandé le <?= $orders->getCompleteTimestamp() ?></p>
+<p id="dateCommand">Commandé le <?= $date ?></p>
 <hr>
 <p id="thank">Merci de bien vouloir procéder au payment de la commande.</p>
-<form method="POST">
+
 <button class="button button-primary" id="buttonPaySubmit">Payer</button>
 <button class="button button-cancel" id="buttonPayCancel">Annuler</button>
-</form>
+
 

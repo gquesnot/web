@@ -19,10 +19,11 @@
 				<?php endforeach; ?>
 				</select>
 			</li>
-			<li id="mealInfo" class="meal-details no-left-label" data-id="<?= $meals[0]->getId() ?>" data-priceEach="<?= $meals[0]->getSalePrice() ?>">
+			<li id="mealInfo" class="meal-details no-left-label" data-id="<?= $meals[0]->getId() ?>" data-priceEach="<?= $meals[0]->getSalePrice() ?>"data-quantityInStock="<?= $meals[0]->getQuantityInStock() ?>">
 				<img src="<?= $wwwUrl.'/images/meals/'.$meals[0]->getPhoto()  ?>" alt="<?= $meals[0]->getName() ?>">
 				<p><?= $meals[0]->getDescription() ?></p>
-				<p>Prix: <?= $meals[0]->getSalePrice() ?></p>
+				<p id="price">Prix: <?= $meals[0]->getSalePrice() ?></p>
+				<p>Quantité: <?= $meals[0]->getQuantityInStock() ?>
 				
 			</li>
 			<li>
@@ -50,7 +51,7 @@
 						<?php 	$ordersline = $order->getOrderLine();
 								foreach($ordersline as $orderline): ?>
 						<tr>
-							<td><?= $orderline->getQuantityOrdered() ?></td>
+							<td id="<?= $orderline->getMeal()->getId() ?>"><?= $orderline->getQuantityOrdered() ?></td>
 							<td><?= $orderline->getMeal()->getName() ?></td>
 							<td><?= $orderline->getPriceEach() ?></td>
 							<td><?= $orderline->getPriceEach() * $orderline->getQuantityOrdered() ?></td>

@@ -164,14 +164,18 @@
 		public static function deleteOrder($id)
 		{
 			$db = new Database();
-			var_dump($id);
 			$db->executeSql('DELETE FROM `order` WHERE Id = ?', array($id));
 		}
 
 
 		public function update()
 		{
+			$orderLines = $this->orderLine;	
 			$db=  new Database();
+			foreach($orderLines as $orderLine)
+			{
+				$query = $db->executeSql('UPDATE meal SET quantityInStock= ? WHERE Id = ?',array($orderLine->getMeal()->getQuantityInStock() - $orderLine->getQuantityOrdered(), $orderLine->getMeal()->getId()));
+			}
 			$query = $db->executeSql('UPDATE `order` SET TotalAmount = ?, TaxAmount = ?, CompleteTimestamp = NOW()  WHERE Id= ?', array($this->getTotalAmount(), $this->getTaxAmount(),$this->getId()));
 		}
 

@@ -46,7 +46,7 @@
         </li>
         <li>
             <ul>
-                <li><?= 'Bonjour' ?><a><?= $_SESSION['FirstName'] . ' ' . $_SESSION['LastName'] ?></a><?= ' !' ?></li>
+                <li><?= 'Bonjour' ?><a href="<?= $requestUrl.'/edit/'?>"><?= $_SESSION['FirstName'] . ' ' . $_SESSION['LastName'] ?></a><?= ' !' ?></li>
                 <li><a href="<?= $requestUrl.'/deconnexion/' ?>"><button class="button button-cancel" id="buttonDisconnect">Déconnexion</button></a></li>
             </ul>
         </li>

@@ -18,7 +18,7 @@ class OrderController
             
 
         }
-        $_SESSION['actualOrder'] = $order->getId();
+        $_SESSION['OrderNotCompleted'] = $order->getId();
         return ['meals'=>$meals, 'order'=>$order];
         
         

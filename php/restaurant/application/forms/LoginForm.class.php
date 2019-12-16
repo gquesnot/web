@@ -24,6 +24,7 @@ class LoginForm extends Form{
 	 			$_SESSION['FirstName'] = $user->getFirstName();
 	 			$_SESSION['LastName'] = $user->getLastName();
 	 			$_SESSION['Email'] = $user->getEmail();
+	 			$_SESSION['Password'] = $user->getPassword();
 	 			$_SESSION['Address'] = $user->getAddress();
 	 			$_SESSION['BirthDate'] = $user->getBirthDate();
 	 			$_SESSION['City'] = $user->getCity();

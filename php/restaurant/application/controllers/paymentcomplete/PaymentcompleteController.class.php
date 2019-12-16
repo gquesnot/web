@@ -11,30 +11,14 @@ class PaymentcompleteController
     	 * L'argument $queryFields contient l'équivalent de $_GET en PHP natif.
         */
 
-    \Stripe\Stripe::setApiKey('sk_test_hAm282IxQWJiDa05VkNdBGOm002LBab0lC');
+        $orders = Order::getOneOrderByUserIdNotCompleted($_SESSION['Id']);
+            $_SESSION['OrderNotCompleted'] = $orders->getId();
+            $orders->setTotalAmount($orders->getOrderLine());
+            $orders->setTaxAmount($orders->getTotalAmount());
+            $orders->update();
+         unset($_SESSION['OrderNotCompleted']);
 
-$session = \Stripe\Checkout\Session::create([
-  'payment_method_types' => ['card'],
-  'line_items' => [[
-    'name' => 'T-shirt',
-    'description' => 'Comfortable cotton t-shirt',
-    'images' => ['https://example.com/t-shirt.png'],
-    'amount' => 500,
-    'currency' => 'eur',
-    'quantity' => 1,
-  ],[
-    'name' => 'S-shirt',
-    'description' => 'Comfortable cotton t-shirt',
-    'images' => ['https://example.com/t-shirt.png'],
-    'amount' => 300,
-    'currency' => 'eur',
-    'quantity' => 1,
-  ]],
-  'success_url' => 'http://localhost/dev/php/restaurant/index.php/success?session_id={CHECKOUT_SESSION_ID}',
-  'cancel_url' => 'http://localhost/dev/php/restaurant/index.php/cancel',
-]);
-
-        return ['session'=>$session];
+       
     }
 
     public function httpPostMethod(Http $http, array $formFields)

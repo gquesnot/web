@@ -188,6 +188,14 @@
 			return $tmp;
 		}
 
+		public static function getUserByIdForJson($id)
+		{
+
+			$db = new Database();
+			$data = $db->queryOne('SELECT * FROM user WHERE Id = ?', array($id));
+			return $data;
+		}
+
 
 		public static function getAllUser()
 		{
