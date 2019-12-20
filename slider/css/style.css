@@ -1,0 +1,104 @@
+/* FONT FACE */
+/* Appelle les polices de la page */
+
+/*GLOBAL */
+/* Balises et class appelés à plusieurs endroits dans la page */
+
+/* HEADER */
+/* Ce qui concerne le header et la nav */
+
+/* MAIN */
+/* Ce qui concerne le corps du site */
+
+/* FOOTER */
+/* Ce qui concerne le footer */
+
+
+*{box-sizing: border-box;}
+
+body{
+
+}
+main{
+
+	width: 80%;
+	margin: 0 auto;
+}
+
+
+ul li{
+	list-style: none;
+}
+
+
+
+#papa{
+	width: 100%;
+	display: flex;
+	z-index: 2;
+	height: 1000px;
+}
+
+
+#papa >li:first-child{
+	width:70%;
+	border: 1px solid red;
+	height: 550px;
+
+}
+
+
+
+#drop img{
+	overflow: auto;
+	
+}
+
+
+
+#papa >li:last-child{
+	width: 29%;
+	border: 1px solid green;
+	height : 550px;
+
+
+}
+
+
+#enfant{
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+	z-index: 1;
+	max-height: 500px;
+	width: 100%;
+	
+	
+}
+
+#enfant>li{
+
+
+}
+
+#enfant img{
+
+	position: relative;
+    width: 50%;
+/*    left:0;
+    top:0;*/
+    margin: 20px auto 0 auto;
+  
+}
+
+img.active{
+    background: rgba(255,255,255,0.3);
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    transform: scale(1);
+  }
+
+
+.opacity{
+	opacity: 0.33;
+}
