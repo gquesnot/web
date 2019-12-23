@@ -50,7 +50,8 @@ ul li{
 
 
 #drop img{
-	overflow: auto;
+	width: 50%;
+	height: 100%;
 	
 }
 

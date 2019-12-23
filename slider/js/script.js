@@ -3,11 +3,13 @@
 
 
 $(function(){
-
+	$("#enfant > img").draggable({ disabled: true });
 	var i = 0;
-	$('img').click(function(){
-	
-				$(this).toggleClass('opacity');
+	$('#enfant > img').click(function(){
+				$('#enfant > img').each(function(){
+					$(this).removeClass('opacity');
+				});
+				$(this).addClass('opacity');
 				$('#drop').html("<img src=\""+$(this).attr('src')+"\">");
 			});
 
@@ -35,7 +37,7 @@ slider.addEventListener('mousemove', (e) => {
   if(!isDown) return;
   e.preventDefault();
   const y = e.pageY - slider.offsetTop;
-  const walk = (y - startY) * 3; //scroll-fast
+  const walk = (y - startY) * 2; //scroll-fast
   slider.scrollTop = scrollTop - walk;
 });
 
